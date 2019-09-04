@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/01 21:21:57 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/04 23:28:03 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	*pr_error(void)
 {
 	write(1, "Error\n", 6);
-	exit(0);
+	exit(1);
 }
 
-t_stack		*ft_create_elem(int num)
+t_stack		*ft_create_elem(long long num)
 {
 	t_stack	*newlist;
 
 	if ((newlist = (t_stack*)malloc(sizeof(t_stack))))
 	{
 		newlist->next = NULL;
-		newlist->num = num;
+		newlist->num = (int)num;
 	}
 	return (newlist);
 }
@@ -49,7 +49,7 @@ char		is_num(char *str)
 {
 	while (*str)
 	{
-		if (*str >= 48 && *str <= 57)
+		if ((*str >= 48 && *str <= 57) || *str == '+' || *str == '-')
 			str++;
 		else
 			return (0);
@@ -57,26 +57,43 @@ char		is_num(char *str)
 	return (1);
 }
 
+int				put_to_stack(char *str, t_stack **stack)
+{
+	long long 	num;
+	t_stack 	*tmp;
+	int			str_pos;
+
+	tmp = 0;
+	str_pos = 0;
+	//if (str)
+	num = ft_atoi(str, &str_pos);
+	if (!(tmp = ft_create_elem(num)) || num > INT_MAX || num < INT_MIN)
+		pr_error();
+	ft_stack_push_back(stack, tmp);
+	//printf("str_pos = %d\n", str_pos);
+	return (str_pos);
+}
+
+void		parse_multi_args(char *str, t_stack **stack)
+{
+	while (*str)
+	{
+		str += put_to_stack(str, stack);
+	}
+}
+
 char		fill_stack(t_stack **stack, char **argv)
 {
-	int 	num;
-	t_stack *tmp;
-	char 	*str;
-
-	num = 0;
-	tmp = 0;
 	*stack = 0;
 	while (*(++argv))
 	{
-		str = *argv;
-		//if (ft_strchr(*argv, ' '))
-
-		if (is_num(str))
+		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t')) // Add tab etc.
+		{	
+			parse_multi_args(*argv, stack);
+		}
+		else if (is_num(*argv))
 		{
-			num = ft_atoi(str);
-			if (!(tmp = ft_create_elem(num)))
-				return ((char)pr_error());
-			ft_stack_push_back(stack, tmp);
+			put_to_stack(*argv, stack);
 		}
 		else
 			return (0);

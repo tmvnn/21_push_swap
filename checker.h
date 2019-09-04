@@ -42,7 +42,7 @@ void				*pr_error(void);
 
 char				*ft_strchr(const char *s, int c);
 size_t				ft_strlen(const char *str);
-int					ft_atoi(const char *str);
+long long			ft_atoi(const char *str, int *s);
 char				*ft_strchr(const char *s, int c);
 
 
