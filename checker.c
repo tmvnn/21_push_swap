@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/04 23:28:03 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/06 18:31:26 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,17 @@ int				put_to_stack(char *str, t_stack **stack)
 
 	tmp = 0;
 	str_pos = 0;
-	//if (str)
-	num = ft_atoi(str, &str_pos);
+	num = ps_atoi(str, &str_pos);
 	if (!(tmp = ft_create_elem(num)) || num > INT_MAX || num < INT_MIN)
 		pr_error();
 	ft_stack_push_back(stack, tmp);
-	//printf("str_pos = %d\n", str_pos);
 	return (str_pos);
 }
 
 void		parse_multi_args(char *str, t_stack **stack)
 {
 	while (*str)
-	{
 		str += put_to_stack(str, stack);
-	}
 }
 
 char		fill_stack(t_stack **stack, char **argv)
@@ -116,22 +112,34 @@ void 		print_stack(t_stack *stack)
 
 int		main(int argc, char **argv)
 {
-	char		t[6];
+	char		buff[BUFF_SIZE1 + 1];
+	int			r_size;
 	t_stack		*stack;
+	char		*line;
 
 	if (argc > 1)
 	{
 		if (fill_stack(&stack, argv))
 		{
-			
 			print_stack(stack);
+			/*while((r_size = read(0, buff, BUFF_SIZE)))
+			{
+				buff[r_size] = 0;
+			}
+			printf("Exit = %s\n", buff);
+			*/
+	
+			while (get_next_line(0, &line) > 0)
+			{
+				printf("Exit = '%s'\n", line);
+			}
+			free(line);
+						//if (read(0, t, 6))
+			//printf("Exist = %s\n", t);
+			
 		}
 		else
 			return ((int)pr_error());
-		
-
-		//if (read(0, t, 6))
-			//printf("Exist = %s\n", t);
 	}
 	return (0);
 }

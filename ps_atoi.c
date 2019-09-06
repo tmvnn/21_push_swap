@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 22:37:47 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/04 23:28:01 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:30:47 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static unsigned long long		get_num(const char *str, int *s, int sign)
 	return (rez);
 }
 
-long long						ft_atoi(const char *str, int *s)
+long long						ps_atoi(const char *str, int *s)
 {
 	int							sign;
 

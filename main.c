@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/08/31 15:14:52 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/06 18:22:13 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@
 int		main(int argc, char **argv)
 {
 
-	if (argc == 2)
-		write(1, argv[1], 1);
+	if (argc > 1)
+		while (*(++argv))
+		{
+			write(1, *argv, 3);
+			write(1, "\n", 1);
+		}
 
 	return (0);
 }

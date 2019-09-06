@@ -13,7 +13,7 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# define BUFF_SIZE 4096
+# define BUFF_SIZE1 3
 # define ALLOWABLE_SYMB "0123456789"
 
 # include <unistd.h>
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "libft/includes/libft.h"
 
 typedef struct		s_stack
 {
@@ -42,7 +43,7 @@ void				*pr_error(void);
 
 char				*ft_strchr(const char *s, int c);
 size_t				ft_strlen(const char *str);
-long long			ft_atoi(const char *str, int *s);
+long long			ps_atoi(const char *str, int *s);
 char				*ft_strchr(const char *s, int c);
 
 
