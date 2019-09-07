@@ -13,7 +13,7 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# define BUFF_SIZE1 3
+//# define BUFF_SIZE1 3
 # define ALLOWABLE_SYMB "0123456789"
 
 # include <unistd.h>
@@ -36,6 +36,7 @@ typedef struct		s_stack
 
 //int				ft_printf(const char * restrict format, ...);
 void				*pr_error(void);
+void				valid_and_sort(t_stack **stack_a);
 
 /*
 ** ----------------------------- libft Functions -------------------------------

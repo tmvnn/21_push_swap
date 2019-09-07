@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/06 18:31:26 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/07 19:42:25 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,31 +112,15 @@ void 		print_stack(t_stack *stack)
 
 int		main(int argc, char **argv)
 {
-	char		buff[BUFF_SIZE1 + 1];
-	int			r_size;
-	t_stack		*stack;
-	char		*line;
+	t_stack		*stack_a;
 
 	if (argc > 1)
 	{
-		if (fill_stack(&stack, argv))
+		if (fill_stack(&stack_a, argv))
 		{
-			print_stack(stack);
-			/*while((r_size = read(0, buff, BUFF_SIZE)))
-			{
-				buff[r_size] = 0;
-			}
-			printf("Exit = %s\n", buff);
-			*/
-	
-			while (get_next_line(0, &line) > 0)
-			{
-				printf("Exit = '%s'\n", line);
-			}
-			free(line);
-						//if (read(0, t, 6))
-			//printf("Exist = %s\n", t);
-			
+			print_stack(stack_a);
+			valid_and_sort(&stack_a);
+			print_stack(stack_a);
 		}
 		else
 			return ((int)pr_error());
