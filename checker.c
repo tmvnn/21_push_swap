@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/07 19:42:25 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/08 18:35:57 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_stack		*ft_create_elem(long long num)
 
 	if ((newlist = (t_stack*)malloc(sizeof(t_stack))))
 	{
-		newlist->next = NULL;
+		newlist->next = 0;
 		newlist->num = (int)num;
 	}
 	return (newlist);
@@ -34,7 +34,7 @@ void		ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
 {
 	t_stack	*tmpptr;
 
-	if (*begin_list == NULL)
+	if (*begin_list == 0)
 		*begin_list = cur_elem;
 	else
 	{
@@ -42,6 +42,24 @@ void		ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
 		while (tmpptr->next)
 			tmpptr = tmpptr->next;
 		tmpptr->next = cur_elem;
+	}
+}
+
+void	ft_stack_push_front(t_stack **begin_list, int num)
+{
+	t_stack *new;
+
+	if (!(new = ft_create_elem(num)))
+		pr_error();
+	if (*begin_list == 0)
+	{
+		new->next = 0;
+		*begin_list = new;
+	}
+	else
+	{
+		new->next = *begin_list;
+		*begin_list = new;
 	}
 }
 
@@ -120,7 +138,7 @@ int		main(int argc, char **argv)
 		{
 			print_stack(stack_a);
 			valid_and_sort(&stack_a);
-			print_stack(stack_a);
+			//print_stack(stack_a);
 		}
 		else
 			return ((int)pr_error());

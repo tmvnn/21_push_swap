@@ -37,6 +37,8 @@ typedef struct		s_stack
 //int				ft_printf(const char * restrict format, ...);
 void				*pr_error(void);
 void				valid_and_sort(t_stack **stack_a);
+void				ft_stack_push_front(t_stack **begin_list, int num);
+void 				print_stack(t_stack *stack);
 
 /*
 ** ----------------------------- libft Functions -------------------------------
