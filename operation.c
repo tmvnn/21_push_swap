@@ -6,16 +6,16 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 19:41:15 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/08 18:24:00 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/08 20:28:44 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	do_sa(t_stack **stack_a)
+void		do_sa(t_stack **stack_a)
 {
 	int		tmp;
-	
+
 	if (*stack_a != 0 && (*stack_a)->next != 0)
 	{
 		tmp = (*stack_a)->num;
@@ -24,10 +24,10 @@ void	do_sa(t_stack **stack_a)
 	}
 }
 
-void	do_sb(t_stack **stack_b)
+void		do_sb(t_stack **stack_b)
 {
 	int		tmp;
-	
+
 	if (*stack_b != 0)
 		if ((*stack_b)->next != 0)
 		{
@@ -37,13 +37,13 @@ void	do_sb(t_stack **stack_b)
 		}
 }
 
-void	do_ss(t_stack **stack_a, t_stack **stack_b)
+void		do_ss(t_stack **stack_a, t_stack **stack_b)
 {
 	do_sa(stack_a);
 	do_sb(stack_b);
 }
 
-void	do_pb(t_stack **stack_a, t_stack **stack_b)
+void		do_pb(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 
@@ -56,11 +56,11 @@ void	do_pb(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	do_rab(t_stack **stack)
+void		do_rab(t_stack **stack)
 {
 	t_stack	*tmp;
-	int 	num;
-	
+	int		num;
+
 	if (*stack != 0 && (*stack)->next != 0)
 	{
 		tmp = *stack;
@@ -74,26 +74,26 @@ void	do_rab(t_stack **stack)
 	}
 }
 
-void	do_ra(t_stack **stack)
+void		do_ra(t_stack **stack)
 {
 	do_rab(stack);
 }
 
-void	do_rb(t_stack **stack)
+void		do_rb(t_stack **stack)
 {
 	do_rab(stack);
 }
 
-void	do_rr(t_stack **stack_a, t_stack **stack_b)
+void		do_rr(t_stack **stack_a, t_stack **stack_b)
 {
 	do_rab(stack_a);
 	do_rab(stack_b);
 }
 
-void	do_rrab(t_stack **stack)
+void		do_rrab(t_stack **stack)
 {
 	t_stack	*tmp;
-	
+
 	if (*stack != 0 && (*stack)->next != 0)
 	{
 		tmp = *stack;
@@ -107,23 +107,23 @@ void	do_rrab(t_stack **stack)
 	}
 }
 
-void	do_rra(t_stack **stack)
+void		do_rra(t_stack **stack)
 {
 	do_rrab(stack);
 }
 
-void	do_rrb(t_stack **stack)
+void		do_rrb(t_stack **stack)
 {
 	do_rrab(stack);
 }
 
-void	do_rrr(t_stack **stack_a, t_stack **stack_b)
+void		do_rrr(t_stack **stack_a, t_stack **stack_b)
 {
 	do_rrab(stack_a);
 	do_rrab(stack_b);
 }
 
-void	check_and_do_op(char *line, t_stack **stack_a, t_stack **stack_b)
+void		check_and_do_op(char *line, t_stack **stack_a, t_stack **stack_b)
 {
 	if (!ft_strcmp(line, "sa"))
 		do_sa(stack_a);
@@ -151,17 +151,16 @@ void	check_and_do_op(char *line, t_stack **stack_a, t_stack **stack_b)
 		pr_error();
 }
 
-void	valid_and_sort(t_stack **stack_a)
+void		valid_and_sort(t_stack **stack_a)
 {
-	char		*line;
-	t_stack		*stack_b;
+	char	*line;
+	t_stack	*stack_b;
 
 	line = 0;
 	stack_b = 0;
 	while (get_next_line(0, &line) > 0 && *line != 0)
 	{
 		check_and_do_op(line, stack_a, &stack_b);
-		//printf("Exit = '%s'\n", line);
 		print_stack(*stack_a);
 		print_stack(stack_b);
 	}

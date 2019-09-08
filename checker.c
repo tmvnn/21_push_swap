@@ -6,21 +6,21 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/08 18:35:57 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/08 20:33:41 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	*pr_error(void)
+void			*pr_error(void)
 {
 	write(1, "Error\n", 6);
 	exit(1);
 }
 
-t_stack		*ft_create_elem(long long num)
+t_stack			*ft_create_elem(long long num)
 {
-	t_stack	*newlist;
+	t_stack		*newlist;
 
 	if ((newlist = (t_stack*)malloc(sizeof(t_stack))))
 	{
@@ -30,9 +30,9 @@ t_stack		*ft_create_elem(long long num)
 	return (newlist);
 }
 
-void		ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
+void			ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
 {
-	t_stack	*tmpptr;
+	t_stack		*tmpptr;
 
 	if (*begin_list == 0)
 		*begin_list = cur_elem;
@@ -45,9 +45,9 @@ void		ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
 	}
 }
 
-void	ft_stack_push_front(t_stack **begin_list, int num)
+void			ft_stack_push_front(t_stack **begin_list, int num)
 {
-	t_stack *new;
+	t_stack		*new;
 
 	if (!(new = ft_create_elem(num)))
 		pr_error();
@@ -63,7 +63,7 @@ void	ft_stack_push_front(t_stack **begin_list, int num)
 	}
 }
 
-char		is_num(char *str)
+char			is_num(char *str)
 {
 	while (*str)
 	{
@@ -77,8 +77,8 @@ char		is_num(char *str)
 
 int				put_to_stack(char *str, t_stack **stack)
 {
-	long long 	num;
-	t_stack 	*tmp;
+	long long	num;
+	t_stack		*tmp;
 	int			str_pos;
 
 	tmp = 0;
@@ -90,19 +90,19 @@ int				put_to_stack(char *str, t_stack **stack)
 	return (str_pos);
 }
 
-void		parse_multi_args(char *str, t_stack **stack)
+void			parse_multi_args(char *str, t_stack **stack)
 {
 	while (*str)
 		str += put_to_stack(str, stack);
 }
 
-char		fill_stack(t_stack **stack, char **argv)
+char			fill_stack(t_stack **stack, char **argv)
 {
 	*stack = 0;
 	while (*(++argv))
 	{
-		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t')) // Add tab etc.
-		{	
+		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t'))/* Add tab etc. */
+		{
 			parse_multi_args(*argv, stack);
 		}
 		else if (is_num(*argv))
@@ -115,9 +115,9 @@ char		fill_stack(t_stack **stack, char **argv)
 	return (1);
 }
 
-void 		print_stack(t_stack *stack)
+void			print_stack(t_stack *stack)
 {
-	t_stack 	*tmp;
+	t_stack		*tmp;
 
 	tmp = stack;
 	while (tmp)
@@ -128,17 +128,62 @@ void 		print_stack(t_stack *stack)
 	printf("\n");
 }
 
-int		main(int argc, char **argv)
+char			no_duplicates(t_stack *stack)
+{
+	t_stack		*tmp_i;
+	t_stack		*tmp_j;
+
+	tmp_i = stack;
+	while (tmp_i)
+	{
+		if (tmp_i->next)
+		{
+			tmp_j = tmp_i->next;
+			while (tmp_j)
+			{
+				if (tmp_i->num == tmp_j->num)
+				{
+					return (0);
+				}
+				tmp_j = tmp_j->next;
+			}
+		}
+		tmp_i = tmp_i->next;
+	}
+	return (1);
+}
+
+char			check_sort(t_stack *stack)
+{
+	t_stack		*tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		if (tmp->next)
+		{
+			if (tmp->num > tmp->next->num)
+				return (0);
+		}
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+int				main(int argc, char **argv)
 {
 	t_stack		*stack_a;
 
 	if (argc > 1)
 	{
-		if (fill_stack(&stack_a, argv))
+		if (fill_stack(&stack_a, argv) && no_duplicates(stack_a))
 		{
 			print_stack(stack_a);
 			valid_and_sort(&stack_a);
-			//print_stack(stack_a);
+			if (check_sort(stack_a))
+				write(1, "OK\n", 3);
+			else
+				write(1, "KO\n", 3);
 		}
 		else
 			return ((int)pr_error());
