@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbellona <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2018/12/10 20:55:05 by lbellona         ###   ########.fr        #
+#    Updated: 2019/09/11 16:01:03 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,8 @@ SOURCES = ft_atoi.c\
 	ft_strtrim.c\
 	ft_tolower.c\
 	ft_toupper.c\
-	ft_word_count.c
+	ft_word_count.c\
+	get_next_line.c
 
 SOURCES_DIR = $(addprefix srcs/, $(SOURCES))
 

@@ -13,7 +13,6 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 
-//# define BUFF_SIZE1 3
 # define ALLOWABLE_SYMB "0123456789"
 
 # include <unistd.h>
@@ -21,7 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "libft/includes/libft.h"
+# include "libft.h"
 
 typedef struct		s_stack
 {
@@ -34,11 +33,11 @@ typedef struct		s_stack
 ** ---------------------------- Main Functions ------------------------------
 */
 
-//int				ft_printf(const char * restrict format, ...);
 void				*pr_error(void);
 void				valid_and_sort(t_stack **stack_a);
 void				ft_stack_push_front(t_stack **begin_list, int num);
 void 				print_stack(t_stack *stack);
+long long			ps_atoi(const char *str, int *s);
 
 /*
 ** ----------------------------- libft Functions -------------------------------
@@ -46,8 +45,5 @@ void 				print_stack(t_stack *stack);
 
 char				*ft_strchr(const char *s, int c);
 size_t				ft_strlen(const char *str);
-long long			ps_atoi(const char *str, int *s);
-char				*ft_strchr(const char *s, int c);
-
 
 #endif

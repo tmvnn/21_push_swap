@@ -3,37 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbellona <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/01/23 20:56:54 by lbellona         ###   ########.fr        #
+#    Updated: 2019/09/11 16:39:08 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES = ft_printf.c\
-		ft_atoi.c\
-		ft_iltoa.c\
-		ft_ultoa_base.c\
-		ft_ultoa.c\
-		ft_memalloc.c\
-		ft_memset.c\
-		ft_strchr.c\
-		ft_strcpy.c\
-		ft_strdup.c\
-		ft_strjoin.c\
-		ft_strlen.c\
-		ft_strnew.c\
-		handle_int.c\
-		handle_uint.c\
-		handle_char.c\
-		parsers.c\
-		pf_check_funcs.c\
-		print_int.c
+SOURCES_C = checker.c\
+		operation.c\
+		ps_atoi.c
 
 SRCSDIR     = srcs
-SRCS = $(addprefix $(SRCSDIR)/, $(SOURCES))
+SRCS_C = $(addprefix $(SRCSDIR)/, $(SOURCES_C))
 
-NAME		= libftprintf.a
+NAME_P		= push_swap
+NAME_C		= checker
 WWW			= -Wall -Wextra -Werror
 INCLUDES	= -I includes/
 
@@ -41,20 +26,19 @@ OBJDIR		= objs
 OFILES 		= $(SOURCES:.c=.o)
 OBJS 		= $(addprefix $(OBJDIR)/, $(OFILES))
 
-all: $(NAME)
+all:
+	make -C ./libft/
+	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_C) -o $(NAME_C)
 
-$(OBJDIR)/%.o: $(SRCSDIR)/%.c
-	@/bin/mkdir -p $(OBJDIR)
-	@gcc -c $(WWW) $(INCLUDES) $< -o $@
-
-$(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+ch:
+	/bin/rm -f $(NAME_C)
+	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_C) -o $(NAME_C)
 
 clean:
-	/bin/rm -rf $(OBJDIR)
+	make -C ./libft/ clean
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	make -C ./libft/ fclean
+	/bin/rm -f $(NAME_C)
 
 re: fclean all
