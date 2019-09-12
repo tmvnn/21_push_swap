@@ -34,10 +34,36 @@ typedef struct		s_stack
 */
 
 void				*pr_error(void);
-void				valid_and_sort(t_stack **stack_a);
-void				ft_stack_push_front(t_stack **begin_list, int num);
-void 				print_stack(t_stack *stack);
+char				is_num(char *str);
+char				fill_stack(t_stack **stack, char **argv);
+void				parse_multi_args(char *str, t_stack **stack);
+int					put_to_stack(char *str, t_stack **stack);
 long long			ps_atoi(const char *str, int *s);
+char				no_duplicates(t_stack *stack);
+t_stack				*ft_create_elem(long long num);
+void				ft_stack_push_front(t_stack **begin_list, int num);
+void				ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem);
+void				valid_and_sort(t_stack **stack_a);
+char				check_sort(t_stack *stack);
+void 				print_stack(t_stack *stack);
+
+/*
+** --------------------------- Operations Functions ----------------------------
+*/
+
+void				check_and_do_op(char *line, t_stack **stack_a, t_stack **stack_b);
+void				do_sa(t_stack **stack_a);
+void				do_sb(t_stack **stack_b);
+void				do_ss(t_stack **stack_a, t_stack **stack_b);
+void				do_pb(t_stack **stack_a, t_stack **stack_b);
+void				do_rab(t_stack **stack);
+void				do_ra(t_stack **stack);
+void				do_rb(t_stack **stack);
+void				do_rr(t_stack **stack_a, t_stack **stack_b);
+void				do_rrab(t_stack **stack);
+void				do_rra(t_stack **stack);
+void				do_rrb(t_stack **stack);
+void				do_rrr(t_stack **stack_a, t_stack **stack_b);
 
 /*
 ** ----------------------------- libft Functions -------------------------------

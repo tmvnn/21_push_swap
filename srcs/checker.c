@@ -6,74 +6,11 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/11 16:28:24 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/12 17:44:27 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-void			*pr_error(void)
-{
-	write(1, "Error\n", 6);
-	exit(1);
-}
-
-t_stack			*ft_create_elem(long long num)
-{
-	t_stack		*newlist;
-
-	if ((newlist = (t_stack*)malloc(sizeof(t_stack))))
-	{
-		newlist->next = 0;
-		newlist->num = (int)num;
-	}
-	return (newlist);
-}
-
-void			ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
-{
-	t_stack		*tmpptr;
-
-	if (*begin_list == 0)
-		*begin_list = cur_elem;
-	else
-	{
-		tmpptr = *begin_list;
-		while (tmpptr->next)
-			tmpptr = tmpptr->next;
-		tmpptr->next = cur_elem;
-	}
-}
-
-void			ft_stack_push_front(t_stack **begin_list, int num)
-{
-	t_stack		*new;
-
-	if (!(new = ft_create_elem(num)))
-		pr_error();
-	if (*begin_list == 0)
-	{
-		new->next = 0;
-		*begin_list = new;
-	}
-	else
-	{
-		new->next = *begin_list;
-		*begin_list = new;
-	}
-}
-
-char			is_num(char *str)
-{
-	while (*str)
-	{
-		if ((*str >= 48 && *str <= 57) || *str == '+' || *str == '-')
-			str++;
-		else
-			return (0);
-	}
-	return (1);
-}
 
 int				put_to_stack(char *str, t_stack **stack)
 {
@@ -102,72 +39,29 @@ char			fill_stack(t_stack **stack, char **argv)
 	while (*(++argv))
 	{
 		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t'))/* Add tab etc. */
-		{
 			parse_multi_args(*argv, stack);
-		}
 		else if (is_num(*argv))
-		{
 			put_to_stack(*argv, stack);
-		}
 		else
 			return (0);
 	}
 	return (1);
 }
 
-void			print_stack(t_stack *stack)
+void		valid_and_sort(t_stack **stack_a)
 {
-	t_stack		*tmp;
+	char	*line;
+	t_stack	*stack_b;
 
-	tmp = stack;
-	while (tmp)
+	line = 0;
+	stack_b = 0;
+	while (get_next_line(0, &line) > 0 && *line != 0)
 	{
-		printf("%d ", tmp->num);
-		tmp = tmp->next;
+		check_and_do_op(line, stack_a, &stack_b);
+		print_stack(*stack_a);
+		print_stack(stack_b);
 	}
-	printf("\n");
-}
-
-char			no_duplicates(t_stack *stack)
-{
-	t_stack		*tmp_i;
-	t_stack		*tmp_j;
-
-	tmp_i = stack;
-	while (tmp_i)
-	{
-		if (tmp_i->next)
-		{
-			tmp_j = tmp_i->next;
-			while (tmp_j)
-			{
-				if (tmp_i->num == tmp_j->num)
-				{
-					return (0);
-				}
-				tmp_j = tmp_j->next;
-			}
-		}
-		tmp_i = tmp_i->next;
-	}
-	return (1);
-}
-
-char			check_sort(t_stack *stack)
-{
-	t_stack		*tmp;
-
-	tmp = stack;
-	while (tmp)
-	{
-		if (tmp->next)
-		{
-			if (tmp->num > tmp->next->num)
-				return (0);
-		}
-		tmp = tmp->next;
-	}
-	return (1);
+	free(line);
 }
 
 int				main(int argc, char **argv)

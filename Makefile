@@ -6,13 +6,17 @@
 #    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/11 16:39:08 by timuryakubo      ###   ########.fr        #
+#    Updated: 2019/09/12 17:56:41 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES_C = checker.c\
 		operation.c\
-		ps_atoi.c
+		ps_atoi.c\
+		stack_funcs.c\
+		validation.c\
+		opers1.c\
+		opers2.c
 
 SRCSDIR     = srcs
 SRCS_C = $(addprefix $(SRCSDIR)/, $(SOURCES_C))
