@@ -6,7 +6,7 @@
 #    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/12 17:56:41 by timuryakubo      ###   ########.fr        #
+#    Updated: 2019/09/12 18:25:52 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,20 @@ SOURCES_C = checker.c\
 		stack_funcs.c\
 		validation.c\
 		opers1.c\
-		opers2.c
+		opers2.c\
+		fill_stack.c
+
+SOURCES_PS = push_swap.c\
+		fill_stack.c\
+		stack_funcs.c\
+		ps_atoi.c\
+		validation.c
 
 SRCSDIR     = srcs
 SRCS_C = $(addprefix $(SRCSDIR)/, $(SOURCES_C))
+SRCS_PS = $(addprefix $(SRCSDIR)/, $(SOURCES_PS))
 
-NAME_P		= push_swap
+NAME_PS		= push_swap
 NAME_C		= checker
 WWW			= -Wall -Wextra -Werror
 INCLUDES	= -I includes/
@@ -33,10 +41,15 @@ OBJS 		= $(addprefix $(OBJDIR)/, $(OFILES))
 all:
 	make -C ./libft/
 	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_C) -o $(NAME_C)
+	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_PS) -o $(NAME_PS)
 
 ch:
 	/bin/rm -f $(NAME_C)
 	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_C) -o $(NAME_C)
+
+ps:
+	/bin/rm -f $(NAME_PS)
+	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_PS) -o $(NAME_PS)
 
 clean:
 	make -C ./libft/ clean
@@ -44,5 +57,6 @@ clean:
 fclean: clean
 	make -C ./libft/ fclean
 	/bin/rm -f $(NAME_C)
+	/bin/rm -f $(NAME_PS)
 
 re: fclean all
