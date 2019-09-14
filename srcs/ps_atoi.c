@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ps_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 22:37:47 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/06 16:30:47 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/14 20:48:35 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static unsigned long long		get_num(const char *str, int *s, int sign)
 {
-	int 						s_len;
+	int							s_len;
 	unsigned long long			rez;
 
 	rez = 0;
@@ -24,7 +24,7 @@ static unsigned long long		get_num(const char *str, int *s, int sign)
 		rez = rez * 10 + str[*s] - 48;
 		*s = *s + 1;
 		if (rez > LLONG_MAX || (rez < ULLONG_MAX && ++s_len >= 20))
-			return (sign == 1 ? -1 : 0);
+			pr_error();
 	}
 	if (str[*s] != ' ' && str[*s] != '\0' && str[*s] != '\t')
 		pr_error();
@@ -46,6 +46,8 @@ long long						ps_atoi(const char *str, int *s)
 		if (str[*s] == 45)
 			sign = -1;
 		*s = *s + 1;
+		if (str[*s] < 48 || str[*s] > 57)
+			pr_error();
 	}
 	return ((long long)sign * (long long)get_num(str, s, sign));
 }

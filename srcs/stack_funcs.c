@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/12 17:27:39 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/14 20:45:19 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ void			ft_stack_push_front(t_stack **begin_list, int num)
 		new->next = *begin_list;
 		*begin_list = new;
 	}
+}
+
+char			stack_is_empty(t_stack *stack)
+{
+	if (stack)
+		return (1);
+	else
+		return (0);
 }
 
 void			print_stack(t_stack *stack)

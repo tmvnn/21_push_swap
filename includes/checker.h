@@ -43,8 +43,9 @@ char				no_duplicates(t_stack *stack);
 t_stack				*ft_create_elem(long long num);
 void				ft_stack_push_front(t_stack **begin_list, int num);
 void				ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem);
-void				valid_and_sort(t_stack **stack_a);
+void				valid_and_sort(t_stack **stack_a, t_stack **stack_b);
 char				check_sort(t_stack *stack);
+char				stack_is_empty(t_stack *stack);
 void 				print_stack(t_stack *stack);
 
 /*

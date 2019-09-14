@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 18:17:45 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/12 18:19:01 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/14 20:43:34 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char			fill_stack(t_stack **stack, char **argv)
 	*stack = 0;
 	while (*(++argv))
 	{
-		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t'))/* Add tab etc. */
+		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t'))
 			parse_multi_args(*argv, stack);
 		else if (is_num(*argv))
 			put_to_stack(*argv, stack);
