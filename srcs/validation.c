@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:37:17 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/14 20:46:40 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/15 16:22:52 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ char			no_duplicates(t_stack *stack)
 {
 	t_stack		*tmp_i;
 	t_stack		*tmp_j;
+	int			size;
 
+	size = 0;
 	tmp_i = stack;
 	while (tmp_i)
 	{
@@ -50,9 +52,10 @@ char			no_duplicates(t_stack *stack)
 				tmp_j = tmp_j->next;
 			}
 		}
+		size++;
 		tmp_i = tmp_i->next;
 	}
-	return (1);
+	return (size);
 }
 
 char			check_sort(t_stack *stack)

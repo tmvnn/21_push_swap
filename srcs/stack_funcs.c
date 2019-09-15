@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/14 20:45:19 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/15 17:49:32 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_stack			*ft_create_elem(long long num)
 	if ((newlist = (t_stack*)malloc(sizeof(t_stack))))
 	{
 		newlist->next = 0;
+		newlist->prev = 0;
 		newlist->num = (int)num;
 	}
 	return (newlist);
@@ -36,6 +37,7 @@ void			ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
 		while (tmpptr->next)
 			tmpptr = tmpptr->next;
 		tmpptr->next = cur_elem;
+		cur_elem->prev = tmpptr;
 	}
 }
 
