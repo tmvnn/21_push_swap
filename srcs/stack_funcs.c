@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/15 22:44:14 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/15 22:56:09 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,6 @@ void			print_stacks(t_push_swap *ps)
 	tmp_b = ps->stack_b;
 	while (max--)
 	{
-		/*int len = strlen(ft_itoa(tmp_a->num));
-		int ww = (mm - len) / 2 + len;
-		printf('%*s\n', ww, ft_itoa(tmp_a->num));
-		tmp_a = tmp_a->next;
-		*/
 		if (tmp_a)
 		{
 			printf("| %-12d", tmp_a->num);
@@ -119,14 +114,5 @@ void			print_stacks(t_push_swap *ps)
 			printf("|             |\n");
 		}
 	}
-	/* tmp = stack;
-	while (tmp)
-	{
-		printf("%d ", tmp->num);
-		//write(1, "\033[31mA \033[m", 1);
-		printf("\033[31m%d \033[m", tmp->num);
-		tmp = tmp->prev;
-	}*/
 	printf("|_____________|_____________|\n");
-	//printf("\n");
 }
