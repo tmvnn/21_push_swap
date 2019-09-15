@@ -30,6 +30,19 @@ typedef struct		s_stack
 
 }					t_stack;
 
+typedef struct		s_push_swap
+{
+	int				size;
+	int				size_a;
+	int				size_b;
+	t_stack			*stack_a;
+	t_stack			*end_a;
+	t_stack			*stack_b;
+	t_stack			*end_b;
+	//struct s_stack		*next;
+
+}					t_push_swap;
+
 /*
 ** ---------------------------- Main Functions ------------------------------
 */
@@ -44,20 +57,22 @@ char				no_duplicates(t_stack *stack);
 t_stack				*ft_create_elem(long long num);
 void				ft_stack_push_front(t_stack **begin_list, int num);
 void				ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem);
-void				valid_and_sort(t_stack **stack_a, t_stack **stack_b);
+void				valid_and_sort(t_push_swap *ps);
 char				check_sort(t_stack *stack);
 char				stack_is_empty(t_stack *stack);
 void 				print_stack(t_stack *stack);
+void				print_stacks(t_push_swap *ps);
 
 /*
 ** --------------------------- Operations Functions ----------------------------
 */
 
-void				check_and_do_op(char *line, t_stack **stack_a, t_stack **stack_b);
+void				check_and_do_op(char *line, t_push_swap *ps);
 void				do_sa(t_stack **stack_a);
 void				do_sb(t_stack **stack_b);
 void				do_ss(t_stack **stack_a, t_stack **stack_b);
-void				do_pb(t_stack **stack_a, t_stack **stack_b);
+void				do_pa(t_push_swap *ps);
+void				do_pb(t_push_swap *ps);
 void				do_rab(t_stack **stack);
 void				do_ra(t_stack **stack);
 void				do_rb(t_stack **stack);

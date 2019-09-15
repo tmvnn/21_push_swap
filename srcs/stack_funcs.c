@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/15 17:49:32 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/15 22:44:14 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,55 @@ void			print_stack(t_stack *stack)
 		tmp = tmp->next;
 	}
 	printf("\n");
+}
+
+void			print_stacks(t_push_swap *ps)
+{
+	t_stack		*tmp_a;
+	t_stack		*tmp_b;
+	int			max;
+
+	printf(" ___________________________ \n");
+	printf("|             |             |\n");
+	printf("|      a      |      b      |\n");
+	printf("|_____________|_____________|\n");
+	max = ps->size_a > ps->size_b ? ps->size_a : ps->size_b;
+	tmp_a = ps->stack_a;
+	tmp_b = ps->stack_b;
+	while (max--)
+	{
+		/*int len = strlen(ft_itoa(tmp_a->num));
+		int ww = (mm - len) / 2 + len;
+		printf('%*s\n', ww, ft_itoa(tmp_a->num));
+		tmp_a = tmp_a->next;
+		*/
+		if (tmp_a)
+		{
+			printf("| %-12d", tmp_a->num);
+			tmp_a = tmp_a->next;
+		}
+		else
+		{
+			printf("|             ");
+		}
+		if (tmp_b)
+		{
+			printf("| %-12d|\n", tmp_b->num);
+			tmp_b = tmp_b->next;
+		}
+		else
+		{
+			printf("|             |\n");
+		}
+	}
+	/* tmp = stack;
+	while (tmp)
+	{
+		printf("%d ", tmp->num);
+		//write(1, "\033[31mA \033[m", 1);
+		printf("\033[31m%d \033[m", tmp->num);
+		tmp = tmp->prev;
+	}*/
+	printf("|_____________|_____________|\n");
+	//printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:50:39 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/14 20:44:42 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/15 21:34:55 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,32 @@ void		do_ss(t_stack **stack_a, t_stack **stack_b)
 	do_sb(stack_b);
 }
 
-void		do_pb(t_stack **stack_a, t_stack **stack_b)
+void		do_pb(t_push_swap *ps)
 {
 	t_stack	*tmp;
 
-	if (*stack_a != 0)
+	if (ps->stack_a != 0)
 	{
-		ft_stack_push_front(stack_b, (*stack_a)->num);
-		tmp = (*stack_a)->next;
-		free(*stack_a);
-		*stack_a = tmp;
+		ft_stack_push_front(&ps->stack_b, ps->stack_a->num);
+		tmp = ps->stack_a->next;
+		free(ps->stack_a);
+		ps->stack_a = tmp;
+		ps->size_a--;
+		ps->size_b++;
 	}
 }
 
-void		do_rab(t_stack **stack)
+void		do_pa(t_push_swap *ps)
 {
 	t_stack	*tmp;
-	int		num;
 
-	if (*stack != 0 && (*stack)->next != 0)
+	if (ps->stack_b != 0)
 	{
-		tmp = *stack;
-		num = (*stack)->num;
-		while (tmp->next)
-		{
-			tmp->num = tmp->next->num;
-			tmp = tmp->next;
-		}
-		tmp->num = num;
+		ft_stack_push_front(&ps->stack_a, ps->stack_b->num);
+		tmp = ps->stack_b->next;
+		free(ps->stack_b);
+		ps->stack_b = tmp;
+		ps->size_a++;
+		ps->size_b--;
 	}
 }
