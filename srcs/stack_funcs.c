@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/15 22:56:09 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/16 23:00:41 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
 	}
 }
 
-void			ft_stack_push_front(t_stack **begin_list, int num)
+void			ft_stack_push_front(t_stack **begin_list, int num, t_stack **stack_end)
 {
 	t_stack		*new;
 
@@ -51,10 +51,12 @@ void			ft_stack_push_front(t_stack **begin_list, int num)
 	{
 		new->next = 0;
 		*begin_list = new;
+		*stack_end = new;
 	}
 	else
 	{
 		new->next = *begin_list;
+		(*begin_list)->prev = new;
 		*begin_list = new;
 	}
 }
@@ -80,6 +82,35 @@ void			print_stack(t_stack *stack)
 	printf("\n");
 }
 
+void			print_stack_bw(t_stack *stack)
+{
+	t_stack		*tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		printf("%d ", tmp->num);
+		tmp = tmp->prev;
+	}
+	printf("\n");
+}
+
+t_stack			*find_stack_end(t_stack *stack)
+{
+	t_stack		*tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		if (!tmp->next)
+		{
+			return (tmp);
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 void			print_stacks(t_push_swap *ps)
 {
 	t_stack		*tmp_a;
@@ -101,18 +132,14 @@ void			print_stacks(t_push_swap *ps)
 			tmp_a = tmp_a->next;
 		}
 		else
-		{
 			printf("|             ");
-		}
 		if (tmp_b)
 		{
 			printf("| %-12d|\n", tmp_b->num);
 			tmp_b = tmp_b->next;
 		}
 		else
-		{
 			printf("|             |\n");
-		}
 	}
 	printf("|_____________|_____________|\n");
 }

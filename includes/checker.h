@@ -55,13 +55,15 @@ int					put_to_stack(char *str, t_stack **stack);
 long long			ps_atoi(const char *str, int *s);
 char				no_duplicates(t_stack *stack);
 t_stack				*ft_create_elem(long long num);
-void				ft_stack_push_front(t_stack **begin_list, int num);
+void				ft_stack_push_front(t_stack **begin_list, int num, t_stack **stack_end);
 void				ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem);
 void				valid_and_sort(t_push_swap *ps);
 char				check_sort(t_stack *stack);
 char				stack_is_empty(t_stack *stack);
 void 				print_stack(t_stack *stack);
 void				print_stacks(t_push_swap *ps);
+void				print_stack_bw(t_stack *stack);//
+t_stack				*find_stack_end(t_stack *stack);//
 
 /*
 ** --------------------------- Operations Functions ----------------------------
@@ -77,10 +79,10 @@ void				do_rab(t_stack **stack);
 void				do_ra(t_stack **stack);
 void				do_rb(t_stack **stack);
 void				do_rr(t_stack **stack_a, t_stack **stack_b);
-void				do_rrab(t_stack **stack);
-void				do_rra(t_stack **stack);
-void				do_rrb(t_stack **stack);
-void				do_rrr(t_stack **stack_a, t_stack **stack_b);
+void				do_rrab(t_stack **stack, t_stack **stack_end);
+void				do_rra(t_stack **stack, t_stack **stack_end);
+void				do_rrb(t_stack **stack, t_stack **stack_end);
+void				do_rrr(t_push_swap *ps);
 
 /*
 ** ----------------------------- libft Functions -------------------------------

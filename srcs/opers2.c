@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   opers2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:54:46 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/15 22:51:46 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/16 23:42:20 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		do_rr(t_stack **stack_a, t_stack **stack_b)
 	do_rab(stack_b);
 }
 
-void		do_rrab(t_stack **stack)
+void		do_rrab(t_stack **stack, t_stack **stack_end)
 {
 	t_stack	*tmp;
 
@@ -58,7 +58,10 @@ void		do_rrab(t_stack **stack)
 			tmp = tmp->next;
 		}
 		tmp->next->next = *stack;
+		tmp->next->prev = 0;
+		(*stack)->prev = tmp->next;
 		*stack = tmp->next;
 		tmp->next = 0;
+		*stack_end = tmp;
 	}
 }
