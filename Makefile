@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
+#    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/12 18:25:52 by timuryakubo      ###   ########.fr        #
+#    Updated: 2019/09/18 15:43:14 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,12 @@ SOURCES_PS = push_swap.c\
 		fill_stack.c\
 		stack_funcs.c\
 		ps_atoi.c\
-		validation.c
+		validation.c\
+		sort_2_3.c\
+		operation.c\
+		opers1.c\
+		opers2.c\
+		ps_opers1.c
 
 SRCSDIR     = srcs
 SRCS_C = $(addprefix $(SRCSDIR)/, $(SOURCES_C))

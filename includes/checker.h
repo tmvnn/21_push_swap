@@ -64,6 +64,7 @@ void 				print_stack(t_stack *stack);
 void				print_stacks(t_push_swap *ps);
 void				print_stack_bw(t_stack *stack);//
 t_stack				*find_stack_end(t_stack *stack);//
+void				init_stacks_params(t_push_swap *ps);
 
 /*
 ** --------------------------- Operations Functions ----------------------------

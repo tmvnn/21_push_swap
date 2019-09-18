@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/16 23:00:41 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/18 13:38:12 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,7 @@ t_stack			*find_stack_end(t_stack *stack)
 	while (tmp)
 	{
 		if (!tmp->next)
-		{
 			return (tmp);
-		}
 		tmp = tmp->next;
 	}
 	return (0);

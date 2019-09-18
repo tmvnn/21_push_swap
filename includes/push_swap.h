@@ -28,10 +28,16 @@ typedef struct		s_params
 ** ---------------------------- Main Functions ------------------------------
 */
 
+void				sort2(t_push_swap *ps);
+void				sort3(t_push_swap *ps);
+
 /*
 ** --------------------------- Operations Functions ----------------------------
 */
 
+void				do_write_sa(t_stack **stack_a);
+void				do_write_rra(t_stack **stack, t_stack **stack_end);
+void				do_write_ra(t_stack **stack, t_stack **stack_end);
 
 /*
 ** ----------------------------- libft Functions -------------------------------

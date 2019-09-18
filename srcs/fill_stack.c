@@ -6,11 +6,20 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 18:17:45 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/14 20:43:34 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:01:59 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+void			init_stacks_params(t_push_swap *ps)
+{
+	ps->size_a = ps->size;
+	ps->size_b = 0;
+	ps->stack_b = 0;
+	ps->end_a = find_stack_end(ps->stack_a);
+	ps->end_b = 0;
+}
 
 int				put_to_stack(char *str, t_stack **stack)
 {
