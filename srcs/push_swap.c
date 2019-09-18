@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/18 15:12:58 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/18 16:53:36 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,19 @@ void			find_sort(t_push_swap *ps)
 	else if (ps->size == 2)
 		sort2(ps);
 	else if (ps->size == 3)
-		sort3(ps);
+		sort3(ps);\
+	else
+	{
+		sort_more(ps);
+	}
+
+}
+
+void			main_print(t_push_swap *ps)
+{
+	print_stacks(ps);
+	print_stack_bw(ps->end_a);
+	print_stack(ps->stack_b);
 }
 
 int				main(int argc, char **argv)
@@ -32,14 +44,10 @@ int				main(int argc, char **argv)
 		if (fill_stack(&ps.stack_a, argv) && (ps.size = no_duplicates(ps.stack_a)))
 		{
 			init_stacks_params(&ps);
-			print_stacks(&ps);
-			print_stack_bw(ps.end_a);
-			print_stack(ps.stack_b);
+			main_print(&ps);
 			find_sort(&ps);
 
-			print_stacks(&ps);
-			print_stack_bw(ps.end_a);
-			print_stack(ps.stack_b);
+			main_print(&ps);
 		}
 		else
 			return ((int)pr_error());
