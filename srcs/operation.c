@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 19:41:15 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/16 23:47:46 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/17 21:38:43 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void		check_and_do_op(char *line, t_push_swap *ps)
 	else if (!ft_strcmp(line, "pb"))
 		do_pb(ps);
 	else if (!ft_strcmp(line, "ra"))
-		do_ra(&ps->stack_a);
+		do_ra(&ps->stack_a, &ps->end_a);
 	else if (!ft_strcmp(line, "rb"))
-		do_rb(&ps->stack_b);
+		do_rb(&ps->stack_b, &ps->end_b);
 	else if (!ft_strcmp(line, "rr"))
-		do_rr(&ps->stack_a, &ps->stack_b);
+		do_rr(ps);
 	else if (!ft_strcmp(line, "rra"))
 		do_rra(&ps->stack_a, &ps->end_a);
 	else if (!ft_strcmp(line, "rrb"))

@@ -6,44 +6,47 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:54:46 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/16 23:42:20 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/17 21:42:13 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void		do_rab(t_stack **stack)
+void		do_rab(t_stack **stack, t_stack **stack_end)
 {
 	t_stack	*tmp;
-	int		num;
 
 	if (*stack != 0 && (*stack)->next != 0)
 	{
 		tmp = *stack;
-		num = (*stack)->num;
-		while (tmp->next)
+		while (tmp->next->next)
 		{
-			tmp->num = tmp->next->num;
 			tmp = tmp->next;
 		}
-		tmp->num = num;
+		tmp->next->next = *stack;
+		*stack_end = *stack;
+		(*stack)->next->prev = 0;
+		(*stack)->prev = tmp->next;
+		tmp = (*stack)->next;
+		(*stack)->next = 0;
+		*stack = tmp;
 	}
 }
 
-void		do_ra(t_stack **stack)
+void		do_ra(t_stack **stack, t_stack **stack_end)
 {
-	do_rab(stack);
+	do_rab(stack, stack_end);
 }
 
-void		do_rb(t_stack **stack)
+void		do_rb(t_stack **stack, t_stack **stack_end)
 {
-	do_rab(stack);
+	do_rab(stack, stack_end);
 }
 
-void		do_rr(t_stack **stack_a, t_stack **stack_b)
+void		do_rr(t_push_swap *ps)
 {
-	do_rab(stack_a);
-	do_rab(stack_b);
+	do_rab(&ps->stack_a, &ps->end_a);
+	do_rab(&ps->stack_b, &ps->end_b);
 }
 
 void		do_rrab(t_stack **stack, t_stack **stack_end)
