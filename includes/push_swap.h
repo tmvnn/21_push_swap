@@ -17,8 +17,8 @@
 
 typedef struct		s_params
 {
-	int					d_head;
-	int					pos_a;
+	int					i_top;
+	int					i_bot;
 	struct s_params		*next;
 	struct s_params		*prev;
 
@@ -33,6 +33,7 @@ void				sort3(t_push_swap *ps);
 void				sort3_a(t_push_swap *ps);
 void				sort_more(t_push_swap *ps);
 void				put_all_but3_on_b(t_push_swap *ps);
+void				main_print(t_push_swap *ps); //DELELTE!
 
 /*
 ** --------------------------- Operations Functions ----------------------------

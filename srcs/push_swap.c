@@ -47,7 +47,7 @@ int				main(int argc, char **argv)
 			main_print(&ps);
 			find_sort(&ps);
 
-			main_print(&ps);
+			//main_print(&ps);
 		}
 		else
 			return ((int)pr_error());
