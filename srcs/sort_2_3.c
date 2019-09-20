@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_2_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/18 17:30:52 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/19 21:35:49 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,53 @@ void		sort3(t_push_swap *ps)
 	sort3_a(ps);
 }
 
+void		put_all_but3_on_b(t_push_swap *ps)
+{
+	int		i;
+
+	i = -1;
+	while(++i < ps->size - 3)
+		do_write_pb(ps);
+}
+
 void		sort_more(t_push_swap *ps)
 {
+	if (check_sort(ps->stack_a))
+		return ;
+	put_all_but3_on_b(ps);
+	sort3_a(ps);
+
+	/*do_write_ra(&ps->stack_a, &ps->end_a); //./push_swap 5 12 18 4 7 1 9 2 10 11 20 6 13
+	do_write_pa(ps);
+	do_write_pa(ps);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	do_write_rb(&ps->stack_b, &ps->end_b);
+	do_write_pa(ps);
+	do_write_ra(&ps->stack_a, &ps->end_a);
+	do_write_ra(&ps->stack_a, &ps->end_a);
+	do_write_ra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	do_write_rb(&ps->stack_b, &ps->end_b);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	//
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_rra(&ps->stack_a, &ps->end_a);*/
+
 	/*do_write_sa(&ps->stack_a); //./push_swap 2 1 3 6 5 8
 	do_write_pb(ps);
 	do_write_pb(ps);

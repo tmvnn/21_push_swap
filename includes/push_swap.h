@@ -32,6 +32,7 @@ void				sort2(t_push_swap *ps);
 void				sort3(t_push_swap *ps);
 void				sort3_a(t_push_swap *ps);
 void				sort_more(t_push_swap *ps);
+void				put_all_but3_on_b(t_push_swap *ps);
 
 /*
 ** --------------------------- Operations Functions ----------------------------
