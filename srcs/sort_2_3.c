@@ -61,21 +61,87 @@ void		put_all_but3_on_b(t_push_swap *ps)
 		do_write_pb(ps);
 }
 
-int			n_2_put_in_a(t_stack *stack_a)
+/*int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
 {
-	t_stack	*tmp;
+	int		i;
+	int		pos;
+	t_stack *top_a;
+	t_stack *bot_a;
 
-	tmp = stack_a;
+	if (cur_n < top_a->num && cur_n > bot_a->num)
+	{
+		*oper = NaN;
+		return (0);
+	}
+	pos = 0;
+	i = -1;
+	top_a = ps->stack_a;
+	bot_a = ps->end_a;
+	while (++i <= ps->size_a / 2 )
+	{
+		if (!top_a->prev && !bot_a->next) // firs iter put outside cycle to optimize
+		{
+
+		}
+		top_a = top_a->next;
+		if (i + 1 <= ps->size_a / 2 - !(ps->size_a % 2)) //Optimize
+		{
+			bot_a = bot_a->prev;
+		}
+	}
+	return (pos);
+}*/
+
+int			find_min_a_el(t_push_swap *ps)
+{
+	t_stack *tmp;
+	int		min;
+
+	min = ps->min_a;
+	tmp = ps->stack_a;
 	while (tmp)
 	{
+		if (tmp->num < min)
+			return (ps->min_a = tmp->num);
 		tmp = tmp->next;
 	}
-	return (1);
+	return (ps->min_a);
+}
+
+int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
+{
+	int		i;
+	int		pos;
+	t_stack *tmp;
+
+	if ((cur_n < ps->stack_a->num && cur_n > ps->end_a->num) || cur_n < ps->min_a) //ENDED HERE!
+	{
+		ps->min_a = cur_n;
+		*oper = NaN;
+		return (0);
+	}
+	tmp = ps->stack_a->next;
+	i = 0;
+	while (tmp)
+	{
+		if (cur_n < tmp->num && cur_n > tmp->prev->num)
+		{
+			if (i <= ps->size_b / 2)
+			{
+				//ra
+			}
+			return (1001);
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	return (pos);
 }
 
 void		sort_more(t_push_swap *ps)
 {
 	int		i;
+	int		oper;
 	t_stack *min;
 	t_stack *top_b;
 	t_stack *bot_b;
@@ -86,15 +152,18 @@ void		sort_more(t_push_swap *ps)
 	sort3_a(ps);
 
 	main_print(ps);
-	i = -1;
+	find_min_a_el(ps);
+	return ;
+	oper = NaN;
 	top_b = ps->stack_b;
 	bot_b = ps->end_b;
-	printf("size_b = %d\n", ps->size_b);
+	i = -1;
 	while (++i <= ps->size_b / 2 )
 	{
 		//i   and   i+1
+		n_2_put_in_a(ps, top_b->num, &oper);
 		top_b = top_b->next;
-		if (i + 1 <= ps->size_b / 2 - !(ps->size_b % 2))
+		if (i + 1 <= ps->size_b / 2 - !(ps->size_b % 2)) //Optimize
 		{
 			//printf("bot = %d ", bot_b->num);
 			bot_b = bot_b->prev;

@@ -19,6 +19,7 @@ void			init_stacks_params(t_push_swap *ps)
 	ps->stack_b = 0;
 	ps->end_a = find_stack_end(ps->stack_a);
 	ps->end_b = 0;
+	ps->min_a = ps->end_a->num;
 }
 
 int				put_to_stack(char *str, t_stack **stack)

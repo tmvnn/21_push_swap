@@ -13,6 +13,14 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# define NaN 0
+# define ra 1
+# define rra 2
+# define rb 3
+# define rrb 4
+# define rr 5
+# define rrr 6
+
 # include "checker.h"
 
 typedef struct		s_params
