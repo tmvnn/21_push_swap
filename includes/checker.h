@@ -36,6 +36,7 @@ typedef struct		s_push_swap
 	int				size_a;
 	int				size_b;
 	int				min_a;
+	int				max_a;
 	t_stack			*stack_a;
 	t_stack			*end_a;
 	t_stack			*stack_b;

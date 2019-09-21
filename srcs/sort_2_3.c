@@ -61,37 +61,6 @@ void		put_all_but3_on_b(t_push_swap *ps)
 		do_write_pb(ps);
 }
 
-/*int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
-{
-	int		i;
-	int		pos;
-	t_stack *top_a;
-	t_stack *bot_a;
-
-	if (cur_n < top_a->num && cur_n > bot_a->num)
-	{
-		*oper = NaN;
-		return (0);
-	}
-	pos = 0;
-	i = -1;
-	top_a = ps->stack_a;
-	bot_a = ps->end_a;
-	while (++i <= ps->size_a / 2 )
-	{
-		if (!top_a->prev && !bot_a->next) // firs iter put outside cycle to optimize
-		{
-
-		}
-		top_a = top_a->next;
-		if (i + 1 <= ps->size_a / 2 - !(ps->size_a % 2)) //Optimize
-		{
-			bot_a = bot_a->prev;
-		}
-	}
-	return (pos);
-}*/
-
 int			find_min_a_el(t_push_swap *ps)
 {
 	t_stack *tmp;
@@ -108,15 +77,59 @@ int			find_min_a_el(t_push_swap *ps)
 	return (ps->min_a);
 }
 
+/*int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
+{
+	int		i;
+	int		pos;
+	t_stack *top_a;
+	t_stack *bot_a;
+
+	if ((cur_n < ps->stack_a->num && cur_n > ps->end_a->num) ||
+						(ps->stack_a->num == ps->min_a && cur_n < ps->min_a) ||
+						(ps->stack_a->num == ps->min_a && cur_n > ps->max_a))//put in fnc
+	{
+		//printf("HERE\n");
+		if (ps->stack_a->num == ps->min_a && cur_n < ps->min_a)
+			ps->min_a = cur_n;
+		if (ps->stack_a->num == ps->min_a && cur_n > ps->max_a)
+			ps->max_a = cur_n;
+		*oper = NaN;
+		return (0);
+	}
+	pos = 0;
+	i = -1;
+	top_a = ps->stack_a->next; //skip first: top_a = ps->stack_a->next;
+	bot_a = ps->end_a->prev;
+	while (++i <= ps->size_a / 2 )
+	{
+		if (!top_a->prev && !bot_a->next) // firs iter put outside cycle to optimize
+		{
+
+		}
+		top_a = top_a->next;
+		if (i + 1 <= ps->size_a / 2 - !(ps->size_a % 2)) //Optimize
+		{
+			bot_a = bot_a->prev;
+		}
+	}
+	return (pos);
+}*/
+
 int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
 {
 	int		i;
 	int		pos;
 	t_stack *tmp;
 
-	if ((cur_n < ps->stack_a->num && cur_n > ps->end_a->num) || cur_n < ps->min_a) //ENDED HERE!
+	if ((cur_n < ps->stack_a->num && cur_n > ps->end_a->num) ||
+						(ps->stack_a->num == ps->min_a && cur_n < ps->min_a) ||
+						(ps->stack_a->num == ps->min_a && cur_n > ps->max_a))//put in fnc
 	{
-		ps->min_a = cur_n;
+		//printf("HERE\n");
+		if (ps->stack_a->num == ps->min_a && cur_n < ps->min_a)
+			ps->min_a = cur_n;
+		if (ps->stack_a->num == ps->min_a && cur_n > ps->max_a)
+			ps->max_a = cur_n;
 		*oper = NaN;
 		return (0);
 	}
@@ -126,16 +139,39 @@ int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
 	{
 		if (cur_n < tmp->num && cur_n > tmp->prev->num)
 		{
-			if (i <= ps->size_b / 2)
+			if (i <= ps->size_a / 2)
 			{
-				//ra
+				*oper = ra;
+				return (i);
 			}
-			return (1001);
+			else
+			{
+				*oper = rra;
+				return (-i + 2 * (ps->size_a / 2) + 1 - (!(ps->size_a % 2))); // i - (i - maxi) - (i - maxi - 1) - !(n % 2nbm )
+			}
+		}
+		if (tmp->num == ps->min_a && cur_n < ps->min_a)
+		{
+			ps->min_a = cur_n;
+		}
+		if (tmp->num == ps->min_a && cur_n > ps->max_a)
+		{
+			ps->max_a = cur_n;
 		}
 		tmp = tmp->next;
 		i++;
 	}
 	return (pos);
+}
+
+void		ps_do_op(t_push_swap *ps, int *oper)
+{
+	if (*oper == ra)
+	{
+
+	}
+	do_write_pa(ps);
+	*oper = NaN;
 }
 
 void		sort_more(t_push_swap *ps)
@@ -149,14 +185,25 @@ void		sort_more(t_push_swap *ps)
 	if (check_sort(ps->stack_a))
 		return ;
 	put_all_but3_on_b(ps);
-	sort3_a(ps);
+	sort3(ps);
+
 
 	main_print(ps);
-	find_min_a_el(ps);
-	return ;
+	//return ;
+	//find_min_a_el(ps);
+	ps->min_a = ps->stack_a->num;
+	ps->max_a = ps->end_a->num;
+	printf("min = %d\n", ps->min_a);
+	printf("max = %d\n", ps->max_a);
 	oper = NaN;
 	top_b = ps->stack_b;
 	bot_b = ps->end_b;
+	n_2_put_in_a(ps, top_b->num, &oper);
+	ps_do_op(ps, &oper);
+	main_print(ps);
+	printf("min = %d\n", ps->min_a);
+	printf("max = %d\n", ps->max_a);
+	return ;
 	i = -1;
 	while (++i <= ps->size_b / 2 )
 	{
