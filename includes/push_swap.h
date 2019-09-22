@@ -13,6 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# define FT_MIN(a,b) ((a)>(b)?(b):(a))
 # define NaN 0
 # define ra 1
 # define rra 2
@@ -42,6 +43,7 @@ void				sort3_a(t_push_swap *ps);
 void				sort_more(t_push_swap *ps);
 void				put_all_but3_on_b(t_push_swap *ps);
 void				main_print(t_push_swap *ps); //DELELTE!
+int 				min_step(int n1, int n2);
 
 /*
 ** --------------------------- Operations Functions ----------------------------

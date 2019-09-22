@@ -177,7 +177,7 @@ int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
 	return (-1);
 }
 
-void		ps_do_op(t_push_swap *ps, int *oper)
+void		do_op_with_min_step(t_push_swap *ps, int *oper)
 {
 	if (*oper == ra)
 	{
@@ -187,13 +187,21 @@ void		ps_do_op(t_push_swap *ps, int *oper)
 	*oper = NaN;
 }
 
+int 	min_step(int n1, int n2)
+{
+	if (n1 > n2)
+		return (n2);
+	return (n1);
+}
+
 void		sort_more(t_push_swap *ps)
 {
 	int		i;
 	int		oper_a;
-	int		oper_b;
+	//int		oper_b;
 	int		n_top;
 	int		n_bot;
+	int		min;
 	t_stack *top_b;
 	t_stack *bot_b;
 
@@ -209,7 +217,7 @@ void		sort_more(t_push_swap *ps)
 	printf("max_a = %d \n\n",ps->max_a = ps->end_a->num);
 
 	oper_a = NaN;
-	oper_b = NaN;
+	//oper_b = NaN;
 	top_b = ps->stack_b;
 	bot_b = ps->end_b;
 
@@ -217,25 +225,33 @@ void		sort_more(t_push_swap *ps)
 	i = -1;
 	while (++i <= ps->size_b / 2 )
 	{
-		//printf("min_a = %d ",ps->min_a);
-		//printf("max_a = %d ",ps->max_a);
 		//i   and   i+1
 		n_top = n_2_put_in_a(ps, top_b->num, &oper_a);
-		printf("top = %d i = %d n_top = %d oper_a = %d ", top_b->num, i, n_top, oper_a);
+		ps->step_a = n_top;
+		ps->step_b = i;
+		ps->oper_a = oper_a;
+		ps->oper_b = rb;
+
+		//printf("top = %d i = %d n_top = %d oper_a = %d ", top_b->num, i, n_top, oper_a);
 
 		top_b = top_b->next;
 		if (i + 1 <= ps->size_b / 2 - !(ps->size_b % 2)) //Optimize
 		{
-			n_bot = n_2_put_in_a(ps, bot_b->num, &oper_b);
-			printf("bot = %d i = %d n_bot = %d oper_b = %d ", bot_b->num, i + 1, n_bot, oper_b);
-
+			n_bot = n_2_put_in_a(ps, bot_b->num, &oper_a);
+			//printf("bot = %d i = %d n_bot = %d oper_b = %d ", bot_b->num, i + 1, n_bot, oper_a);
 			bot_b = bot_b->prev;
 		}
-		//printf("oper_a = %d oper_b = %d", oper_a, oper_b);
+
+		/*//min = FT_MIN(n_top + i, n_bot + i + 1); //min_step(n_top + i, n_bot + i + 1);
+		if (FT_MIN(n_top + i, n_bot + i + 1) <= i + 1)
+		{
+			do_op_with_min_step(ps, &oper_a);
+			break;
+		}*/
 		printf("\n");
 	}
-
-	ps_do_op(ps, &oper_a);
+	printf("\n");
+	do_op_with_min_step(ps, &oper_a);
 	main_print(ps);
 
 	/*do_write_ra(&ps->stack_a, &ps->end_a); //./push_swap 5 12 18 4 7 1 9 2 10 11 20 6 13
