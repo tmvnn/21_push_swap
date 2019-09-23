@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/23 23:29:41 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/19 21:35:49 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,43 +177,14 @@ int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
 	return (-1);
 }
 
-void		do_op_with_min_step(t_push_swap *ps)
+void		do_op_with_min_step(t_push_swap *ps, int *oper)
 {
-	int		i;
+	if (*oper == ra)
+	{
 
-	if (ps->oper_b == rb)
-	{
-		i = -1;
-		while (++i < ps->step_b)
-		{
-			do_write_rb(&ps->stack_b, &ps->end_b);
-		}
 	}
-	if (ps->oper_b == rrb)
-	{
-		i = -1;
-		while (++i < ps->step_b)
-		{
-			do_write_rrb(&ps->stack_b, &ps->end_b);
-		}
-	}
-	if (ps->oper_a  == ra)
-	{
-		i = -1;
-		while (++i < ps->step_a)
-		{
-			do_write_ra(&ps->stack_a, &ps->end_a);
-		}
-	}
-	if (ps->oper_a  == rra)
-	{
-		i = -1;
-		while (++i < ps->step_a)
-		{
-			do_write_rra(&ps->stack_a, &ps->end_a);
-		}
-	}
-	do_write_pa(ps);
+	//do_write_pa(ps);
+	*oper = NaN;
 }
 
 int 	min_step(int n1, int n2)
@@ -227,12 +198,12 @@ void		sort_more(t_push_swap *ps)
 {
 	int		i;
 	int		oper_a;
-	int		oper_b;
-	int		step_a;
-	int		step_b;
+	//int		oper_b;
+	int		n_top;
+	int		n_bot;
 	int		min;
-	int		delta;
-	t_stack *tmp;
+	t_stack *top_b;
+	t_stack *bot_b;
 
 	if (check_sort(ps->stack_a))
 		return ;
@@ -245,45 +216,44 @@ void		sort_more(t_push_swap *ps)
 	printf("min_a = %d ",ps->min_a = ps->stack_a->num);
 	printf("max_a = %d \n\n",ps->max_a = ps->end_a->num);
 
-	while (ps->stack_b)
+	oper_a = NaN;
+	//oper_b = NaN;
+	top_b = ps->stack_b;
+	bot_b = ps->end_b;
+
+	//top_b = ps->stack_b;
+	i = -1;
+	while (++i <= ps->size_b / 2 )
 	{
-		i = 0;
-		tmp = ps->stack_b;
-		delta = 2 * (ps->size_b / 2) + 1 - (!(ps->size_b % 2));
-		oper_a = NaN;
-		oper_b = NaN;
-		ps->step_a = INT_MAX; //check for long long
-		ps->step_b = 0;
-		while (tmp)
+		//i   and   i+1
+		n_top = n_2_put_in_a(ps, top_b->num, &oper_a);
+		ps->step_a = n_top;
+		ps->step_b = i;
+		ps->oper_a = oper_a;
+		ps->oper_b = rb;
+
+		//printf("top = %d i = %d n_top = %d oper_a = %d ", top_b->num, i, n_top, oper_a);
+
+		top_b = top_b->next;
+		if (i + 1 <= ps->size_b / 2 - !(ps->size_b % 2)) //Optimize
 		{
-			//i   and   i+1
-			step_a = n_2_put_in_a(ps, tmp->num, &oper_a);
-			step_b = (i <= ps->size_b / 2) ? i : (-i + delta);
-			oper_b = (i <= ps->size_b / 2) ? rb : rrb;
-			//printf("tmp->num = %d step_a = %d step_b = %d oper_a = %d oper_b = %d \n", tmp->num, step_a, step_b, oper_a, oper_b);
-
-
-			if (step_a + step_b < ps->step_a + ps->step_b)
-			{
-				ps->step_a = step_a;
-				ps->step_b = step_b;
-				ps->oper_a = oper_a;
-				ps->oper_b = oper_b;
-				if (tmp->num < ps->min_a)
-					ps->min_a = tmp->num;
-				if (tmp->num > ps->max_a)
-					ps->max_a = tmp->num;
-			}
-
-			//printf("tmp->num = %d step_a = %d step_b = %d oper_a = %d oper_b = %d \n", tmp->num, ps->step_a, ps->step_b, ps->oper_a, ps->oper_b);
-
-			i++;
-			tmp = tmp->next;
+			n_bot = n_2_put_in_a(ps, bot_b->num, &oper_a);
+			//printf("bot = %d i = %d n_bot = %d oper_b = %d ", bot_b->num, i + 1, n_bot, oper_a);
+			bot_b = bot_b->prev;
 		}
+
+		/*//min = FT_MIN(n_top + i, n_bot + i + 1); //min_step(n_top + i, n_bot + i + 1);
+		if (FT_MIN(n_top + i, n_bot + i + 1) <= i + 1)
+		{
+			do_op_with_min_step(ps, &oper_a);
+			break;
+		}*/
 		printf("\n");
-		do_op_with_min_step(ps);
-		main_print(ps);
 	}
+	printf("\n");
+	do_op_with_min_step(ps, &oper_a);
+	main_print(ps);
+
 	/*do_write_ra(&ps->stack_a, &ps->end_a); //./push_swap 5 12 18 4 7 1 9 2 10 11 20 6 13
 	do_write_pa(ps);
 	do_write_pa(ps);

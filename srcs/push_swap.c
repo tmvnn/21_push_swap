@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/18 16:53:36 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/23 23:13:39 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void			find_sort(t_push_swap *ps)
 void			main_print(t_push_swap *ps)
 {
 	print_stacks(ps);
-	print_stack_bw(ps->end_a);
-	print_stack(ps->stack_b);
+	//print_stack_bw(ps->end_a);
+	//print_stack(ps->stack_b);
 }
 
 int				main(int argc, char **argv)
