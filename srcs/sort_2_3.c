@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/24 13:45:54 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/24 16:56:22 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,8 +224,7 @@ void		sort_more(t_push_swap *ps)
 	int		oper_b;
 	int		step_a;
 	int		step_b;
-	int		min_a;
-	int		max_a;
+	int		cur_elem;
 	int		delta;
 	t_stack *tmp;
 
@@ -248,8 +247,8 @@ void		sort_more(t_push_swap *ps)
 	do_write_pa(ps);
 	do_write_pa(ps);
 	main_print(ps);*/
-	min_a = ps->stack_a->num;
-	max_a = ps->end_a->num;
+	//min_a = ps->stack_a->num;
+	//max_a = ps->end_a->num;
 	while (ps->stack_b)
 	{
 		//printf("min_a = %d ",ps->min_a);
@@ -276,28 +275,30 @@ void		sort_more(t_push_swap *ps)
 				ps->step_b = step_b;
 				ps->oper_a = oper_a;
 				ps->oper_b = oper_b;
-				if (tmp->num < ps->min_a)
-					min_a = tmp->num;
-				if (tmp->num > ps->max_a)
-					max_a = tmp->num;
+				//if (tmp->num < ps->min_a)
+					cur_elem = tmp->num;
+				//if (tmp->num > ps->max_a)
+					//max_a = tmp->num;
 			}
-			if (step_a + step_b  <= i + 1)
-				break;
+			//if (step_a + step_b  <= i + 1)
+			//	break;
 			////printf("tmp->num = %d step_a = %d step_b = %d oper_a = %d oper_b = %d \n", tmp->num, ps->step_a, ps->step_b, ps->oper_a, ps->oper_b);
 
 			i++;
 			tmp = tmp->next;
 		}
 		//printf("\n");
-		ps->min_a = min_a;
-		ps->max_a = max_a;
+		if (cur_elem < ps->min_a)
+			ps->min_a = cur_elem;
+		else if (cur_elem > ps->max_a)
+			ps->max_a = cur_elem;
 		do_op_with_min_step(ps);
 		//main_print(ps);
 	}
-	printf("min_a = %d\n",ps->min_a);
-	main_print(ps);
+	//printf("min_a = %d\n",ps->min_a);
+	//main_print(ps);
 	rotate_a_to_begin(ps);
-	main_print(ps);
+	//main_print(ps);
 	/*do_write_ra(&ps->stack_a, &ps->end_a); //./push_swap 5 12 18 4 7 1 9 2 10 11 20 6 13
 	do_write_pa(ps);
 	do_write_pa(ps);

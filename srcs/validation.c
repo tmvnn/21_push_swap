@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:37:17 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/15 16:22:52 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/24 15:20:11 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char			is_num(char *str)
 	return (1);
 }
 
-char			no_duplicates(t_stack *stack)
+int				no_duplicates(t_stack *stack)
 {
 	t_stack		*tmp_i;
 	t_stack		*tmp_j;

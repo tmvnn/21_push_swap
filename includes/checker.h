@@ -59,7 +59,7 @@ char				fill_stack(t_stack **stack, char **argv);
 void				parse_multi_args(char *str, t_stack **stack);
 int					put_to_stack(char *str, t_stack **stack);
 long long			ps_atoi(const char *str, int *s);
-char				no_duplicates(t_stack *stack);
+int					no_duplicates(t_stack *stack); //Check max input
 t_stack				*ft_create_elem(long long num);
 void				ft_stack_push_front(t_stack **begin_list, int num, t_stack **stack_end);
 void				ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem);
