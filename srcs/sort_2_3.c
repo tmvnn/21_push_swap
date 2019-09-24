@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/24 16:56:22 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/24 21:23:46 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,7 @@ int		handle_bigin_end(t_push_swap *ps, int cur_n, int *oper)
 						(ps->stack_a->num == ps->min_a && cur_n < ps->min_a) ||
 						(ps->stack_a->num == ps->min_a && cur_n > ps->max_a))
 	{
-		/*if (ps->stack_a->num == ps->min_a && cur_n < ps->min_a)
-			ps->min_a = cur_n;
-		if (ps->stack_a->num == ps->min_a && cur_n > ps->max_a)
-			ps->max_a = cur_n;*/
 		*oper = NaN;
-		//printf(" from first ");
 		return (1);
 	}
 	return (0);
@@ -125,12 +120,10 @@ int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
 		}
 		if (tmp->num == ps->min_a && cur_n < ps->min_a)
 		{
-			//ps->min_a = cur_n;
 			return(set_oper(ps, cur_n, oper, i));
 		}
 		if (tmp->num == ps->min_a && cur_n > ps->max_a)
 		{
-			//ps->max_a = cur_n;
 			return(set_oper(ps, cur_n, oper, i));
 		}
 		tmp = tmp->next;
@@ -143,37 +136,45 @@ void		do_op_with_min_step(t_push_swap *ps)
 {
 	int		i;
 
+	if (ps->oper_b == rb && ps->oper_a == ra)
+	{
+		i = ps->step_b < ps->step_a ? ps->step_b : ps->step_a;
+		ps->step_b -= i;
+		ps->step_a -= i;
+		while (i--)
+			do_write_rr(ps);
+	}
+	else if (ps->oper_b == rrb && ps->oper_a == rra)
+	{
+		i = ps->step_b < ps->step_a ? ps->step_b : ps->step_a;
+		ps->step_b -= i;
+		ps->step_a -= i;
+		while (i--)
+			do_write_rrr(ps);
+	}
 	if (ps->oper_b == rb)
 	{
 		i = -1;
 		while (++i < ps->step_b)
-		{
 			do_write_rb(&ps->stack_b, &ps->end_b);
-		}
 	}
 	if (ps->oper_b == rrb)
 	{
 		i = -1;
 		while (++i < ps->step_b)
-		{
 			do_write_rrb(&ps->stack_b, &ps->end_b);
-		}
 	}
-	if (ps->oper_a  == ra)
+	if (ps->oper_a == ra)
 	{
 		i = -1;
 		while (++i < ps->step_a)
-		{
 			do_write_ra(&ps->stack_a, &ps->end_a);
-		}
 	}
-	if (ps->oper_a  == rra)
+	if (ps->oper_a == rra)
 	{
 		i = -1;
 		while (++i < ps->step_a)
-		{
 			do_write_rra(&ps->stack_a, &ps->end_a);
-		}
 	}
 	do_write_pa(ps);
 }
@@ -239,16 +240,6 @@ void		sort_more(t_push_swap *ps)
 
 	ps->min_a = ps->stack_a->num;
 	ps->max_a = ps->end_a->num;
-	/*do_write_pa(ps);
-	do_write_ra(&ps->stack_a, &ps->end_a);
-	do_write_ra(&ps->stack_a, &ps->end_a);
-	do_write_pa(ps);
-	do_write_rra(&ps->stack_a, &ps->end_a);
-	do_write_pa(ps);
-	do_write_pa(ps);
-	main_print(ps);*/
-	//min_a = ps->stack_a->num;
-	//max_a = ps->end_a->num;
 	while (ps->stack_b)
 	{
 		//printf("min_a = %d ",ps->min_a);
@@ -256,13 +247,13 @@ void		sort_more(t_push_swap *ps)
 		i = 0;
 		tmp = ps->stack_b;
 		delta = 2 * (ps->size_b / 2) + 1 - (!(ps->size_b % 2));
-		oper_a = NaN;
-		oper_b = NaN;
 		ps->step_a = INT_MAX; //check for long long
 		ps->step_b = 0;
 		while (tmp)
 		{
 			//i   and   i+1
+			oper_a = NaN;
+			oper_b = NaN;
 			step_a = n_2_put_in_a(ps, tmp->num, &oper_a);
 			step_b = (i <= ps->size_b / 2) ? i : (-i + delta);
 			oper_b = (i <= ps->size_b / 2) ? rb : rrb;
@@ -275,10 +266,7 @@ void		sort_more(t_push_swap *ps)
 				ps->step_b = step_b;
 				ps->oper_a = oper_a;
 				ps->oper_b = oper_b;
-				//if (tmp->num < ps->min_a)
-					cur_elem = tmp->num;
-				//if (tmp->num > ps->max_a)
-					//max_a = tmp->num;
+				cur_elem = tmp->num;
 			}
 			//if (step_a + step_b  <= i + 1)
 			//	break;
@@ -292,6 +280,7 @@ void		sort_more(t_push_swap *ps)
 			ps->min_a = cur_elem;
 		else if (cur_elem > ps->max_a)
 			ps->max_a = cur_elem;
+		//printf("cur_elem = %d step_a = %d step_b = %d oper_a = %d oper_b = %d \n", cur_elem, ps->step_a, ps->step_b, ps->oper_a, ps->oper_b);
 		do_op_with_min_step(ps);
 		//main_print(ps);
 	}
