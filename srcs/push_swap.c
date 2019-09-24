@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/23 23:13:39 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/24 13:25:05 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void			find_sort(t_push_swap *ps)
 
 void			main_print(t_push_swap *ps)
 {
-	print_stacks(ps);
+	//print_stacks(ps);
 	//print_stack_bw(ps->end_a);
-	//print_stack(ps->stack_b);
+	print_stack(ps->stack_a);
+	print_stack(ps->stack_b);
 }
 
 int				main(int argc, char **argv)
@@ -44,9 +45,8 @@ int				main(int argc, char **argv)
 		if (fill_stack(&ps.stack_a, argv) && (ps.size = no_duplicates(ps.stack_a)))
 		{
 			init_stacks_params(&ps);
-			main_print(&ps);
+			//main_print(&ps);
 			find_sort(&ps);
-
 			//main_print(&ps);
 		}
 		else

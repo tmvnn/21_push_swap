@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/23 23:29:41 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/24 13:45:54 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,44 +76,6 @@ int			find_min_a_el(t_push_swap *ps)
 	}
 	return (ps->min_a);
 }
-
-/*int			n_2_put_in_a(t_push_swap *ps, int cur_n, int *oper)
-{
-	int		i;
-	int		pos;
-	t_stack *top_a;
-	t_stack *bot_a;
-
-	if ((cur_n < ps->stack_a->num && cur_n > ps->end_a->num) ||
-						(ps->stack_a->num == ps->min_a && cur_n < ps->min_a) ||
-						(ps->stack_a->num == ps->min_a && cur_n > ps->max_a))//put in fnc
-	{
-		//printf("HERE\n");
-		if (ps->stack_a->num == ps->min_a && cur_n < ps->min_a)
-			ps->min_a = cur_n;
-		if (ps->stack_a->num == ps->min_a && cur_n > ps->max_a)
-			ps->max_a = cur_n;
-		*oper = NaN;
-		return (0);
-	}
-	pos = 0;
-	i = -1;
-	top_a = ps->stack_a->next; //skip first: top_a = ps->stack_a->next;
-	bot_a = ps->end_a->prev;
-	while (++i <= ps->size_a / 2 )
-	{
-		if (!top_a->prev && !bot_a->next) // firs iter put outside cycle to optimize
-		{
-
-		}
-		top_a = top_a->next;
-		if (i + 1 <= ps->size_a / 2 - !(ps->size_a % 2)) //Optimize
-		{
-			bot_a = bot_a->prev;
-		}
-	}
-	return (pos);
-}*/
 
 int		handle_bigin_end(t_push_swap *ps, int cur_n, int *oper)
 {
@@ -223,6 +185,38 @@ int 	min_step(int n1, int n2)
 	return (n1);
 }
 
+void		rotate_a_to_begin(t_push_swap *ps)
+{
+	t_stack *tmp;
+	int		min;
+	int		i;
+
+	min = ps->min_a;
+	tmp = ps->stack_a;
+	i = 0;
+	while (tmp)
+	{
+		if (tmp->num == min)
+		{
+			if (i <= ps->size_a / 2)
+			{
+				while (i--)
+					do_write_ra(&ps->stack_a, &ps->end_a);
+				return ;
+			}
+			else
+			{
+				i = -i + 2 * (ps->size_a / 2) + 1 - (!(ps->size_a % 2));
+				while (i--)
+					do_write_rra(&ps->stack_a, &ps->end_a);
+				return ;
+			}
+		}
+		tmp = tmp->next;
+		i++;
+	}
+}
+
 void		sort_more(t_push_swap *ps)
 {
 	int		i;
@@ -230,7 +224,8 @@ void		sort_more(t_push_swap *ps)
 	int		oper_b;
 	int		step_a;
 	int		step_b;
-	int		min;
+	int		min_a;
+	int		max_a;
 	int		delta;
 	t_stack *tmp;
 
@@ -238,15 +233,27 @@ void		sort_more(t_push_swap *ps)
 		return ;
 	put_all_but3_on_b(ps);
 	sort3(ps);
-	main_print(ps);
+	//main_print(ps);
 
 
 
-	printf("min_a = %d ",ps->min_a = ps->stack_a->num);
-	printf("max_a = %d \n\n",ps->max_a = ps->end_a->num);
 
+	ps->min_a = ps->stack_a->num;
+	ps->max_a = ps->end_a->num;
+	/*do_write_pa(ps);
+	do_write_ra(&ps->stack_a, &ps->end_a);
+	do_write_ra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	do_write_rra(&ps->stack_a, &ps->end_a);
+	do_write_pa(ps);
+	do_write_pa(ps);
+	main_print(ps);*/
+	min_a = ps->stack_a->num;
+	max_a = ps->end_a->num;
 	while (ps->stack_b)
 	{
+		//printf("min_a = %d ",ps->min_a);
+		//printf("max_a = %d \n\n",ps->max_a);
 		i = 0;
 		tmp = ps->stack_b;
 		delta = 2 * (ps->size_b / 2) + 1 - (!(ps->size_b % 2));
@@ -260,7 +267,7 @@ void		sort_more(t_push_swap *ps)
 			step_a = n_2_put_in_a(ps, tmp->num, &oper_a);
 			step_b = (i <= ps->size_b / 2) ? i : (-i + delta);
 			oper_b = (i <= ps->size_b / 2) ? rb : rrb;
-			//printf("tmp->num = %d step_a = %d step_b = %d oper_a = %d oper_b = %d \n", tmp->num, step_a, step_b, oper_a, oper_b);
+			//printf("tmp->num = %d   step_a = %d   step_b = %d   oper_a = %d   oper_b = %d \n", tmp->num, step_a, step_b, oper_a, oper_b);
 
 
 			if (step_a + step_b < ps->step_a + ps->step_b)
@@ -270,20 +277,27 @@ void		sort_more(t_push_swap *ps)
 				ps->oper_a = oper_a;
 				ps->oper_b = oper_b;
 				if (tmp->num < ps->min_a)
-					ps->min_a = tmp->num;
+					min_a = tmp->num;
 				if (tmp->num > ps->max_a)
-					ps->max_a = tmp->num;
+					max_a = tmp->num;
 			}
-
-			//printf("tmp->num = %d step_a = %d step_b = %d oper_a = %d oper_b = %d \n", tmp->num, ps->step_a, ps->step_b, ps->oper_a, ps->oper_b);
+			if (step_a + step_b  <= i + 1)
+				break;
+			////printf("tmp->num = %d step_a = %d step_b = %d oper_a = %d oper_b = %d \n", tmp->num, ps->step_a, ps->step_b, ps->oper_a, ps->oper_b);
 
 			i++;
 			tmp = tmp->next;
 		}
-		printf("\n");
+		//printf("\n");
+		ps->min_a = min_a;
+		ps->max_a = max_a;
 		do_op_with_min_step(ps);
-		main_print(ps);
+		//main_print(ps);
 	}
+	printf("min_a = %d\n",ps->min_a);
+	main_print(ps);
+	rotate_a_to_begin(ps);
+	main_print(ps);
 	/*do_write_ra(&ps->stack_a, &ps->end_a); //./push_swap 5 12 18 4 7 1 9 2 10 11 20 6 13
 	do_write_pa(ps);
 	do_write_pa(ps);
