@@ -44,10 +44,13 @@ void				sort3(t_push_swap *ps);
 void				sort3_a(t_push_swap *ps);
 void				sort_more(t_push_swap *ps);
 void				put_all_but3_on_b(t_push_swap *ps);
+void				find_optimal_ab_move(t_push_swap *ps);
 int					find_pos_in_a(t_push_swap *ps, int cur_n, int *oper);
 int					handle_first_and_last(t_push_swap *ps, int cur_n, int *oper);
-void				do_op_with_min_step(t_push_swap *ps);
+void				do_optimal_ab_move(t_push_swap *ps);
 void				switch_to_rr_rrr(t_push_swap *ps);
+void				reassign_ps(t_push_swap *ps, t_params par, t_stack 	*tmp);
+void				reassign_a_min_max(t_push_swap *ps);
 void				main_print(t_push_swap *ps); //DELELTE!
 void				rotate_a_to_begin(t_push_swap *ps);
 
@@ -70,6 +73,5 @@ void				do_write_rrr(t_push_swap *ps);
 /*
 ** ----------------------------- libft Functions -------------------------------
 */
-
 
 #endif

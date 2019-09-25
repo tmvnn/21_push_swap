@@ -6,7 +6,7 @@
 #    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/25 16:03:56 by timuryakubo      ###   ########.fr        #
+#    Updated: 2019/09/25 17:27:57 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SOURCES_PS = push_swap.c\
 		ps_atoi.c\
 		validation.c\
 		sort_2_3.c\
+		sort_more.c\
+		find_opt_ab_move.c\
 		operation.c\
 		opers1.c\
 		opers2.c\

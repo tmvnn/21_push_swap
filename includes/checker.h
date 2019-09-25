@@ -41,11 +41,11 @@ typedef struct		s_push_swap
 	int				step_b;
 	int				oper_a;
 	int				oper_b;
+	int				cur_elem;
 	t_stack			*stack_a;
 	t_stack			*end_a;
 	t_stack			*stack_b;
 	t_stack			*end_b;
-	//struct s_stack		*next;
 
 }					t_push_swap;
 
@@ -96,6 +96,5 @@ void				do_rrr(t_push_swap *ps);
 */
 
 char				*ft_strchr(const char *s, int c);
-//size_t				ft_strlen(const char *str);
 
 #endif
