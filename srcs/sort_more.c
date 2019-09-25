@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/25 20:28:39 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/25 21:16:34 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		do_optimal_ab_move(t_push_swap *ps)
 {
 	int		i;
 
-	//switch_to_rr_rrr(ps);
+	switch_to_rr_rrr(ps);
 	i = -1;
 	if (ps->oper_b == rb)
 		while (++i < ps->step_b)
@@ -131,8 +131,8 @@ void			sort_more(t_push_swap *ps)
 		return ;
 	put_all_but3_on_b(ps);
 	sort3(ps);
-	ps->min_a = ps->stack_a->num;
-	ps->max_a = ps->end_a->num;
+	//ps->min_a = ps->stack_a->num;
+	//ps->max_a = ps->end_a->num;
 	while (ps->stack_b)
 	{
 		find_optimal_ab_move(ps);
