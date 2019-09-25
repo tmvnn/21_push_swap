@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/25 17:17:56 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/25 20:28:39 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void		sort3(t_push_swap *ps)
 	if (check_sort(ps->stack_a))
 		return ;
 	sort3_a(ps);
-	ps->min_a = ps->stack_a->num;
-	ps->max_a = ps->end_a->num;
 }
 
 void		put_all_but3_on_b(t_push_swap *ps)
