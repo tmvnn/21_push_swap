@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/25 20:39:20 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/25 21:10:33 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			valid_and_sort(t_push_swap *ps)
 	line = 0;
 	init_stacks_params(ps);
 	//print_stacks(ps);
-	while (get_next_line(0, &line) > 0 && *line != 0)
+	while (get_next_line(0, &line) == 1)
 	{
 		check_and_do_op(line, ps);
 		//print_stacks(ps);
