@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_opers1.c                                        :+:      :+:    :+:   */
+/*   ps_opers2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 15:42:54 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/25 16:03:17 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/25 16:02:53 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void				do_write_sa(t_stack **stack_a)
+void				do_write_rb(t_stack **stack, t_stack **stack_end)
 {
-	do_sa(stack_a);
-	write(1, "sa\n", 3);
+	do_rb(stack, stack_end);
+	write(1, "rb\n", 3);
 }
 
-void				do_write_sb(t_stack **stack_b)
+void				do_write_rr(t_push_swap *ps)
 {
-	do_sb(stack_b);
-	write(1, "sb\n", 3);
+	do_rr(ps);
+	write(1, "rr\n", 3);
 }
 
-void				do_write_pa(t_push_swap *ps)
+void				do_write_rra(t_stack **stack, t_stack **stack_end)
 {
-	do_pa(ps);
-	write(1, "pa\n", 3);
+	do_rra(stack, stack_end);
+	write(1, "rra\n", 4);
+}
+void				do_write_rrb(t_stack **stack, t_stack **stack_end)
+{
+	do_rrb(stack, stack_end);
+	write(1, "rrb\n", 4);
 }
 
-void				do_write_pb(t_push_swap *ps)
+void				do_write_rrr(t_push_swap *ps)
 {
-	do_pb(ps);
-	write(1, "pb\n", 3);
-}
-
-void				do_write_ra(t_stack **stack, t_stack **stack_end)
-{
-	do_ra(stack, stack_end);
-	write(1, "ra\n", 3);
+	do_rrr(ps);
+	write(1, "rrr\n", 4);
 }

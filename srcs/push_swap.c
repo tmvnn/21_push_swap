@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/24 21:22:09 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/25 14:54:04 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ void			find_sort(t_push_swap *ps)
 	else if (ps->size == 2)
 		sort2(ps);
 	else if (ps->size == 3)
-		sort3(ps);\
+		sort3(ps);
 	else
 	{
 		sort_more(ps);
 	}
-
 }
 
 void			main_print(t_push_swap *ps)

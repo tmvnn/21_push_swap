@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define FT_MIN(a,b) ((a)>(b)?(b):(a))
+//# define FT_MIN(a,b) ((a)>(b)?(b):(a))
 # define NaN 0
 # define ra 1
 # define rra 2
@@ -26,10 +26,12 @@
 
 typedef struct		s_params
 {
-	int					i_top;
-	int					i_bot;
-	struct s_params		*next;
-	struct s_params		*prev;
+	int					oper_a;
+	int					oper_b;
+	int					step_a;
+	int					step_b;
+	int					cur_elem;
+	int					delta;
 
 }					t_params;
 
@@ -42,8 +44,12 @@ void				sort3(t_push_swap *ps);
 void				sort3_a(t_push_swap *ps);
 void				sort_more(t_push_swap *ps);
 void				put_all_but3_on_b(t_push_swap *ps);
+int					find_pos_in_a(t_push_swap *ps, int cur_n, int *oper);
+int					handle_first_and_last(t_push_swap *ps, int cur_n, int *oper);
+void				do_op_with_min_step(t_push_swap *ps);
+void				switch_to_rr_rrr(t_push_swap *ps);
 void				main_print(t_push_swap *ps); //DELELTE!
-int 				min_step(int n1, int n2);
+void				rotate_a_to_begin(t_push_swap *ps);
 
 /*
 ** --------------------------- Operations Functions ----------------------------

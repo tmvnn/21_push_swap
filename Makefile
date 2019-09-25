@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
+#    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/18 15:43:14 by lbellona         ###   ########.fr        #
+#    Updated: 2019/09/25 16:03:56 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SOURCES_PS = push_swap.c\
 		operation.c\
 		opers1.c\
 		opers2.c\
-		ps_opers1.c
+		ps_opers1.c\
+		ps_opers2.c
 
 SRCSDIR     = srcs
 SRCS_C = $(addprefix $(SRCSDIR)/, $(SOURCES_C))
