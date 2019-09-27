@@ -13,7 +13,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//# define FT_MIN(a,b) ((a)>(b)?(b):(a))
 # define NaN 0
 # define ra 1
 # define rra 2

@@ -42,6 +42,7 @@ typedef struct		s_push_swap
 	int				oper_a;
 	int				oper_b;
 	int				cur_elem;
+	char			option_print;
 	t_stack			*stack_a;
 	t_stack			*end_a;
 	t_stack			*stack_b;
@@ -55,7 +56,7 @@ typedef struct		s_push_swap
 
 void				*pr_error(void);
 char				is_num(char *str);
-char				fill_stack(t_stack **stack, char **argv);
+char				fill_stack(t_push_swap *ps, char **argv);
 void				parse_multi_args(char *str, t_stack **stack);
 int					put_to_stack(char *str, t_stack **stack);
 long long			ps_atoi(const char *str, int *s);
@@ -67,7 +68,7 @@ void				valid_and_sort(t_push_swap *ps);
 char				check_sort(t_stack *stack);
 char				stack_is_empty(t_stack *stack);
 void 				print_stack(t_stack *stack);
-void				print_stacks(t_push_swap *ps);
+void				print_stacks(char *line, t_push_swap *ps);
 void				print_stack_bw(t_stack *stack);//
 t_stack				*find_stack_end(t_stack *stack);//
 void				init_stacks_params(t_push_swap *ps);

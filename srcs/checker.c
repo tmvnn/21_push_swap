@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/25 21:10:33 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/27 15:00:03 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void			valid_and_sort(t_push_swap *ps)
 	while (get_next_line(0, &line) == 1)
 	{
 		check_and_do_op(line, ps);
+		if (ps->option_print)
+			print_stacks(line, ps);
 		//print_stacks(ps);
 		//print_stack_bw(ps->end_b);
 		//print_stack_bw(ps->end_a);
@@ -35,11 +37,10 @@ int				main(int argc, char **argv)
 
 	if (argc > 1)
 	{
-		if (fill_stack(&ps.stack_a, argv) &&
+		if (fill_stack(&ps, argv) &&
 										(ps.size = no_duplicates(ps.stack_a)))
 		{
 			valid_and_sort(&ps);
-			print_stacks(&ps);
 			if (check_sort(ps.stack_a) && !stack_is_empty(ps.stack_b))
 				write(1, "OK\n", 3);
 			else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 18:17:45 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/18 14:01:59 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/27 14:53:55 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,21 @@ void			parse_multi_args(char *str, t_stack **stack)
 		str += put_to_stack(str, stack);
 }
 
-char			fill_stack(t_stack **stack, char **argv)
+char			fill_stack(t_push_swap *ps, char **argv)
 {
-	*stack = 0;
+	ps->stack_a = 0;
+	ps->option_print = 0;
+	if (!ft_strcmp(argv[1], "-v") && argv[0][2] == 'c')
+	{
+		ps->option_print = 1;
+		argv++;
+	}
 	while (*(++argv))
 	{
 		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t'))
-			parse_multi_args(*argv, stack);
+			parse_multi_args(*argv, &ps->stack_a);
 		else if (is_num(*argv))
-			put_to_stack(*argv, stack);
+			put_to_stack(*argv, &ps->stack_a);
 		else
 			return (0);
 	}

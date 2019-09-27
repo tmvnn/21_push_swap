@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/18 13:38:12 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/27 15:18:55 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,24 @@ t_stack			*find_stack_end(t_stack *stack)
 	return (0);
 }
 
-void			print_stacks(t_push_swap *ps)
+void			print_head(char *line, t_push_swap *ps, int *max)
+{
+	if (*line != 0)
+		printf("%s:\n", line);
+	*max = ps->size_a > ps->size_b ? ps->size_a : ps->size_b;
+	printf(" ___________________________ \n");
+	printf("|             |             |\n");
+	printf("|      a      |      b      |\n");
+	printf("|_____________|_____________|\n");
+}
+
+void			print_stacks(char *line, t_push_swap *ps)
 {
 	t_stack		*tmp_a;
 	t_stack		*tmp_b;
 	int			max;
 
-	printf(" ___________________________ \n");
-	printf("|             |             |\n");
-	printf("|      a      |      b      |\n");
-	printf("|_____________|_____________|\n");
-	max = ps->size_a > ps->size_b ? ps->size_a : ps->size_b;
+	print_head(line, ps, &max);
 	tmp_a = ps->stack_a;
 	tmp_b = ps->stack_b;
 	while (max--)
@@ -139,5 +146,5 @@ void			print_stacks(t_push_swap *ps)
 		else
 			printf("|             |\n");
 	}
-	printf("|_____________|_____________|\n");
+	printf("|_____________|_____________|\n\n");
 }

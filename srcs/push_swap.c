@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/25 20:29:06 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/27 14:44:20 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				main(int argc, char **argv)
 
 	if (argc > 1)
 	{
-		if (fill_stack(&ps.stack_a, argv) && (ps.size = no_duplicates(ps.stack_a)))
+		if (fill_stack(&ps, argv) && (ps.size = no_duplicates(ps.stack_a)))
 		{
 			init_stacks_params(&ps);
 			//main_print(&ps);
