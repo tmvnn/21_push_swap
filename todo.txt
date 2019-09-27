@@ -1,0 +1,6 @@
+1. Apply v and c options to print
+2. Makefile
+3. Norminette
+4. Check optimize moments
+5. ft_printf add
+6. Full final check
