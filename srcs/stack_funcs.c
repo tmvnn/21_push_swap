@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/27 15:18:55 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/27 16:18:33 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,14 +133,14 @@ void			print_stacks(char *line, t_push_swap *ps)
 	{
 		if (tmp_a)
 		{
-			printf("| %-12d", tmp_a->num);
+			printf("|  \033[32m%-11d\033[m", tmp_a->num);
 			tmp_a = tmp_a->next;
 		}
 		else
 			printf("|             ");
 		if (tmp_b)
 		{
-			printf("| %-12d|\n", tmp_b->num);
+			printf("|  \033[31m%-11d\033[m|\n", tmp_b->num);
 			tmp_b = tmp_b->next;
 		}
 		else

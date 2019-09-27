@@ -43,6 +43,7 @@ typedef struct		s_push_swap
 	int				oper_b;
 	int				cur_elem;
 	char			option_print;
+	char			option_color;
 	t_stack			*stack_a;
 	t_stack			*end_a;
 	t_stack			*stack_b;
