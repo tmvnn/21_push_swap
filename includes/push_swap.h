@@ -13,13 +13,13 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define NaN 0
-# define ra 1
-# define rra 2
-# define rb 3
-# define rrb 4
-# define rr 5
-# define rrr 6
+# define NAN 0
+# define RA 1
+# define RRA 2
+# define RB 3
+# define RRB 4
+# define RR 5
+# define RRR 6
 
 # include "checker.h"
 

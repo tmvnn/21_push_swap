@@ -3,43 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   sort_more.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/25 21:41:18 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/28 19:39:53 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*int			find_min_a_el(t_push_swap *ps) //not used
-{
-	t_stack *tmp;
-	int		min;
-
-	min = ps->min_a;
-	tmp = ps->stack_a;
-	while (tmp)
-	{
-		if (tmp->num < min)
-			return (ps->min_a = tmp->num);
-		tmp = tmp->next;
-	}
-	return (ps->min_a);
-}*/
-
-/*int 	min_step(int n1, int n2)
-{
-	if (n1 > n2)
-		return (n2);
-	return (n1);
-}*/
-
 void		switch_to_rr_rrr(t_push_swap *ps)
 {
 	int		i;
 
-	if (ps->oper_b == rb && ps->oper_a == ra)
+	if (ps->oper_b == RB && ps->oper_a == RA)
 	{
 		i = ps->step_b < ps->step_a ? ps->step_b : ps->step_a;
 		ps->step_b -= i;
@@ -47,7 +24,7 @@ void		switch_to_rr_rrr(t_push_swap *ps)
 		while (i--)
 			do_write_rr(ps);
 	}
-	else if (ps->oper_b == rrb && ps->oper_a == rra)
+	else if (ps->oper_b == RRB && ps->oper_a == RRA)
 	{
 		i = ps->step_b < ps->step_a ? ps->step_b : ps->step_a;
 		ps->step_b -= i;
@@ -63,20 +40,20 @@ void		do_optimal_ab_move(t_push_swap *ps)
 
 	switch_to_rr_rrr(ps);
 	i = -1;
-	if (ps->oper_b == rb)
+	if (ps->oper_b == RB)
 		while (++i < ps->step_b)
 			do_write_rb(&ps->stack_b, &ps->end_b);
 	i = -1;
-	if (ps->oper_b == rrb)
+	if (ps->oper_b == RRB)
 		while (++i < ps->step_b)
 			do_write_rrb(&ps->stack_b, &ps->end_b);
-	if (ps->oper_a == ra)
+	if (ps->oper_a == RA)
 	{
 		i = -1;
 		while (++i < ps->step_a)
 			do_write_ra(&ps->stack_a, &ps->end_a);
 	}
-	if (ps->oper_a == rra)
+	if (ps->oper_a == RRA)
 	{
 		i = -1;
 		while (++i < ps->step_a)
@@ -99,25 +76,22 @@ void		rotate_a_to_begin(t_push_swap *ps)
 		if (tmp->num == min)
 		{
 			if (i <= ps->size_a / 2)
-			{
 				while (i--)
 					do_write_ra(&ps->stack_a, &ps->end_a);
-				return ;
-			}
 			else
 			{
 				i = -i + 2 * (ps->size_a / 2) + 1 - (!(ps->size_a % 2));
 				while (i--)
 					do_write_rra(&ps->stack_a, &ps->end_a);
-				return ;
 			}
+			return ;
 		}
 		tmp = tmp->next;
 		i++;
 	}
 }
 
-void			reassign_a_min_max(t_push_swap *ps)
+void		reassign_a_min_max(t_push_swap *ps)
 {
 	if (ps->cur_elem < ps->min_a)
 		ps->min_a = ps->cur_elem;
@@ -125,7 +99,7 @@ void			reassign_a_min_max(t_push_swap *ps)
 		ps->max_a = ps->cur_elem;
 }
 
-void			sort_more(t_push_swap *ps)
+void		sort_more(t_push_swap *ps)
 {
 	if (check_sort(ps->stack_a))
 		return ;

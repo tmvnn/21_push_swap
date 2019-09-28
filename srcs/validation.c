@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:37:17 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/24 15:20:11 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/28 17:37:57 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

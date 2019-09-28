@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/27 16:18:33 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/28 17:41:18 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void			ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
 	}
 }
 
-void			ft_stack_push_front(t_stack **begin_list, int num, t_stack **stack_end)
+void			ft_stack_push_front(t_stack **begin_list, int num,
+												t_stack **stack_end)
 {
 	t_stack		*new;
 
@@ -67,84 +68,4 @@ char			stack_is_empty(t_stack *stack)
 		return (1);
 	else
 		return (0);
-}
-
-void			print_stack(t_stack *stack)
-{
-	t_stack		*tmp;
-
-	tmp = stack;
-	while (tmp)
-	{
-		printf("%d ", tmp->num);
-		tmp = tmp->next;
-	}
-	printf("\n");
-}
-
-void			print_stack_bw(t_stack *stack)
-{
-	t_stack		*tmp;
-
-	tmp = stack;
-	while (tmp)
-	{
-		printf("%d ", tmp->num);
-		tmp = tmp->prev;
-	}
-	printf("\n");
-}
-
-t_stack			*find_stack_end(t_stack *stack)
-{
-	t_stack		*tmp;
-
-	tmp = stack;
-	while (tmp)
-	{
-		if (!tmp->next)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-void			print_head(char *line, t_push_swap *ps, int *max)
-{
-	if (*line != 0)
-		printf("%s:\n", line);
-	*max = ps->size_a > ps->size_b ? ps->size_a : ps->size_b;
-	printf(" ___________________________ \n");
-	printf("|             |             |\n");
-	printf("|      a      |      b      |\n");
-	printf("|_____________|_____________|\n");
-}
-
-void			print_stacks(char *line, t_push_swap *ps)
-{
-	t_stack		*tmp_a;
-	t_stack		*tmp_b;
-	int			max;
-
-	print_head(line, ps, &max);
-	tmp_a = ps->stack_a;
-	tmp_b = ps->stack_b;
-	while (max--)
-	{
-		if (tmp_a)
-		{
-			printf("|  \033[32m%-11d\033[m", tmp_a->num);
-			tmp_a = tmp_a->next;
-		}
-		else
-			printf("|             ");
-		if (tmp_b)
-		{
-			printf("|  \033[31m%-11d\033[m|\n", tmp_b->num);
-			tmp_b = tmp_b->next;
-		}
-		else
-			printf("|             |\n");
-	}
-	printf("|_____________|_____________|\n\n");
 }

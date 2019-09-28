@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_2_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/25 20:28:39 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/28 17:27:20 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void		put_all_but3_on_b(t_push_swap *ps)
 	int		i;
 
 	i = -1;
-	while(++i < ps->size - 3)
+	while (++i < ps->size - 3)
 		do_write_pb(ps);
 }

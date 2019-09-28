@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/27 15:00:03 by timuryakubo      ###   ########.fr       */
+/*   Created: 2019/09/28 17:04:03 by lbellona          #+#    #+#             */
+/*   Updated: 2019/09/28 17:04:27 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@ void			valid_and_sort(t_push_swap *ps)
 
 	line = 0;
 	init_stacks_params(ps);
-	//print_stacks(ps);
 	while (get_next_line(0, &line) == 1)
 	{
 		check_and_do_op(line, ps);
 		if (ps->option_print)
 			print_stacks(line, ps);
-		//print_stacks(ps);
-		//print_stack_bw(ps->end_b);
-		//print_stack_bw(ps->end_a);
 	}
 	free(line);
 }

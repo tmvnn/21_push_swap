@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 18:17:45 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/27 16:48:00 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2019/09/28 17:05:41 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void			parse_multi_args(char *str, t_stack **stack)
 char			fill_stack(t_push_swap *ps, char **argv)
 {
 	ps->stack_a = 0;
-	if ((!ft_strcmp(argv[1], "-v") || !ft_strcmp(argv[1], "-vc")) && argv[0][2] == 'c')
+	if ((!ft_strcmp(argv[1], "-v") || !ft_strcmp(argv[1], "-vc"))
+												&& argv[0][2] == 'c')
 	{
 		ps->option_print = argv[1][1] == 'v' ? 1 : 0;
 		ps->option_color = argv[1][2] == 'c' ? 1 : 0;

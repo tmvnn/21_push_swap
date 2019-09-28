@@ -1,0 +1,1 @@
+valgrind --leak-check=full --leak-resolution=med ./push_swap $ARG | ./checker -vc $ARG

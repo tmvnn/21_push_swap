@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
+#    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/25 17:27:57 by timuryakubo      ###   ########.fr        #
+#    Updated: 2019/09/28 19:24:55 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SOURCES_C = checker.c\
 		validation.c\
 		opers1.c\
 		opers2.c\
-		fill_stack.c
+		fill_stack.c\
+		print_funcs.c
 
 SOURCES_PS = push_swap.c\
 		fill_stack.c\
@@ -31,7 +32,8 @@ SOURCES_PS = push_swap.c\
 		opers1.c\
 		opers2.c\
 		ps_opers1.c\
-		ps_opers2.c
+		ps_opers2.c\
+		print_funcs.c
 
 SRCSDIR     = srcs
 SRCS_C = $(addprefix $(SRCSDIR)/, $(SOURCES_C))
