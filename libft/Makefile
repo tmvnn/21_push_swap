@@ -6,7 +6,7 @@
 #    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/29 17:09:51 by lbellona         ###   ########.fr        #
+#    Updated: 2019/09/29 20:51:13 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,10 +84,12 @@ OFILES = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(WWW) -c $(SOURCES_DIR) -I $(INCLUDES)
+$(NAME): $(OFILES)
 	ar rc $(NAME) $(OFILES)
 	ranlib $(NAME)
+
+%.o:srcs/%.c
+	 gcc $(WWW) -I $(INCLUDES) -o $@ -c $<
 
 clean:
 	/bin/rm -f $(OFILES)

@@ -6,7 +6,7 @@
 #    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/29 17:09:46 by lbellona         ###   ########.fr        #
+#    Updated: 2019/09/29 21:34:39 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,34 +35,40 @@ SOURCES_PS = push_swap.c\
 		ps_opers2.c\
 		print_funcs.c
 
+CH 			= checker
+
+PS 			= push_swap
+
 SRCSDIR     = srcs
-SRCS_C = $(addprefix $(SRCSDIR)/, $(SOURCES_C))
-SRCS_PS = $(addprefix $(SRCSDIR)/, $(SOURCES_PS))
+SRCS_C 		= $(addprefix $(SRCSDIR)/, $(SOURCES_C))
+SRCS_PS 	= $(addprefix $(SRCSDIR)/, $(SOURCES_PS))
+
+OBJS_CH 	= $(SOURCES_C:.c=.o)
+OBJS_CH_DIR = $(addprefix $(SRCSDIR)/, $(OBJS_CH))
+OBJS_PS 	= $(SOURCES_PS:.c=.o)
+OBJS_PS_DIR = $(addprefix $(SRCSDIR)/, $(OBJS_PS))
 
 NAME_PS		= push_swap
 NAME_C		= checker
-WWW			= -Wall -Wextra -Werror
-INCLUDES	= -I includes/
+INCLUDES	= -I includes/ -I libft/includes
 
-OBJDIR		= objs
-OFILES 		= $(SOURCES:.c=.o)
-OBJS 		= $(addprefix $(OBJDIR)/, $(OFILES))
+all: $(CH) $(PS)
 
-all:
+$(CH): $(OBJS_CH_DIR)
 	make -C ./libft/
-	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_C) -o $(NAME_C)
-	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_PS) -o $(NAME_PS)
+	cc $(OBJS_CH_DIR) -o $@  -L libft -lft
 
-ch:
-	/bin/rm -f $(NAME_C)
-	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_C) -o $(NAME_C)
+$(PS): $(OBJS_PS_DIR)
+	make -C ./libft/
+	cc $(OBJS_PS_DIR) -o $@  -L libft -lft
 
-ps:
-	/bin/rm -f $(NAME_PS)
-	cc -I ./libft/includes -L libft -lft $(INCLUDES) $(SRCS_PS) -o $(NAME_PS)
+$(SRCSDIR)/%.o:$(SRCSDIR)/%.c
+	cc $(WWW) $(INCLUDES) -o $@ -c $<
 
 clean:
 	make -C ./libft/ clean
+	/bin/rm -f $(OBJS_PS_DIR)
+	/bin/rm -f $(OBJS_CH_DIR)
 
 fclean: clean
 	make -C ./libft/ fclean
