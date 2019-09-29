@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 19:41:15 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/28 17:04:51 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:09:49 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ void		check_and_do_op(char *line, t_push_swap *ps)
 	else if (!ft_strcmp(line, "rrr"))
 		do_rrr(ps);
 	else
-		pr_error();
+		pr_error(ps);
 }

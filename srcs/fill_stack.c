@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 18:17:45 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/29 17:02:03 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:10:43 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			init_stacks_params(t_push_swap *ps)
 	ps->max_a = ps->end_a->num;
 }
 
-int				put_to_stack(char *str, t_stack **stack)
+int				put_to_stack(char *str, t_stack **stack, t_push_swap *ps)
 {
 	long long	num;
 	t_stack		*tmp;
@@ -31,17 +31,17 @@ int				put_to_stack(char *str, t_stack **stack)
 
 	tmp = 0;
 	str_pos = 0;
-	num = ps_atoi(str, &str_pos);
+	num = ps_atoi(str, &str_pos, ps);
 	if (!(tmp = ft_create_elem(num)) || num > INT_MAX || num < INT_MIN)
-		pr_error();
+		pr_error(ps);
 	ft_stack_push_back(stack, tmp);
 	return (str_pos);
 }
 
-void			parse_multi_args(char *str, t_stack **stack)
+void			parse_multi_args(char *str, t_stack **stack, t_push_swap *ps)
 {
 	while (*str)
-		str += put_to_stack(str, stack);
+		str += put_to_stack(str, stack, ps);
 }
 
 char			fill_stack(t_push_swap *ps, char **argv)
@@ -59,9 +59,9 @@ char			fill_stack(t_push_swap *ps, char **argv)
 	while (*(++argv))
 	{
 		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t'))
-			parse_multi_args(*argv, &ps->stack_a);
+			parse_multi_args(*argv, &ps->stack_a, ps);
 		else if (is_num(*argv))
-			put_to_stack(*argv, &ps->stack_a);
+			put_to_stack(*argv, &ps->stack_a, ps);
 		else
 			return (0);
 	}

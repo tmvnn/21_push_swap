@@ -6,15 +6,16 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:37:17 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/29 19:55:36 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:19:01 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void			*pr_error(void)
+void			*pr_error(t_push_swap *ps)
 {
 	write(1, "Error\n", 6);
+	clear_stacks(ps);
 	exit(1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 19:27:04 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/29 19:41:19 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:12:22 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,17 @@ typedef struct		s_push_swap
 ** ---------------------------- Main Functions ------------------------------
 */
 
-void				*pr_error(void);
+void				*pr_error(t_push_swap *ps);
 char				is_num(char *str);
 char				fill_stack(t_push_swap *ps, char **argv);
-void				parse_multi_args(char *str, t_stack **stack);
-int					put_to_stack(char *str, t_stack **stack);
-long long			ps_atoi(const char *str, int *s);
+void				parse_multi_args(char *str, t_stack **stack,
+															t_push_swap *ps);
+int					put_to_stack(char *str, t_stack **stack, t_push_swap *ps);
+long long			ps_atoi(const char *str, int *s, t_push_swap *ps);
 int					no_duplicates(t_stack *stack);
 t_stack				*ft_create_elem(long long num);
 void				ft_stack_push_front(t_stack **begin_list, int num,
-														t_stack **stack_end);
+										t_stack **stack_end, t_push_swap *ps);
 void				ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem);
 void				valid_and_sort(t_push_swap *ps);
 char				check_sort(t_stack *stack);

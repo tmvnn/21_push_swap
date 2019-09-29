@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:14:06 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/29 19:56:40 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:13:38 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				main(int argc, char **argv)
 			clear_stacks(&ps);
 		}
 		else
-			return ((int)pr_error());
+			return ((int)pr_error(&ps));
 	}
 	return (0);
 }

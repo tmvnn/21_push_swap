@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/29 19:59:24 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:13:03 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void			ft_stack_push_back(t_stack **begin_list, t_stack *cur_elem)
 }
 
 void			ft_stack_push_front(t_stack **begin_list, int num,
-												t_stack **stack_end)
+										t_stack **stack_end, t_push_swap *ps)
 {
 	t_stack		*new;
 
 	if (!(new = ft_create_elem(num)))
-		pr_error();
+		pr_error(ps);
 	if (*begin_list == 0)
 	{
 		new->next = 0;
