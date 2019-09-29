@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 17:04:03 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/28 17:04:27 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 16:21:11 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			valid_and_sort(t_push_swap *ps)
 		check_and_do_op(line, ps);
 		if (ps->option_print)
 			print_stacks(line, ps);
+		free(line);
 	}
 	free(line);
 }

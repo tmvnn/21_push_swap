@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 18:12:32 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/06 18:19:26 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 17:47:59 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ static t_list		*get_file(t_list **files, int fd)
 			return (tmp_l);
 		tmp_l = tmp_l->next;
 	}
-	if (!(tmp_l = ft_lstnew("\0", fd)))
+	if (!(tmp_l = ft_lstnew(NULL, 0)))
 		return (NULL);
+	tmp_l->content = ft_strdup("\0");
+	tmp_l->content_size = fd;
 	ft_lstadd(files, tmp_l);
 	return (*files);
 }

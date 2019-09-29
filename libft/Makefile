@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
+#    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/11 16:01:03 by timuryakubo      ###   ########.fr        #
+#    Updated: 2019/09/29 17:09:51 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

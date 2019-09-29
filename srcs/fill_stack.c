@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 18:17:45 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/28 17:05:41 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 17:02:03 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void			parse_multi_args(char *str, t_stack **stack)
 char			fill_stack(t_push_swap *ps, char **argv)
 {
 	ps->stack_a = 0;
+	ps->option_print = 0;
+	ps->option_color = 0;
 	if ((!ft_strcmp(argv[1], "-v") || !ft_strcmp(argv[1], "-vc"))
 												&& argv[0][2] == 'c')
 	{
