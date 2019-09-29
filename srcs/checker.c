@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 17:04:03 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/29 16:21:11 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 19:55:23 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int				main(int argc, char **argv)
 				write(1, "OK\n", 3);
 			else
 				write(1, "KO\n", 3);
+			clear_stacks(&ps);
 		}
 		else
 			return ((int)pr_error());

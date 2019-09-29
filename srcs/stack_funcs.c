@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:24:41 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/28 17:41:18 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 19:59:24 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,21 @@ char			stack_is_empty(t_stack *stack)
 		return (1);
 	else
 		return (0);
+}
+
+void			clear_stack(t_stack **stack)
+{
+	t_stack		*elem;
+	t_stack		*tmp;
+
+	elem = *stack;
+	if (!elem)
+		return ;
+	while (elem)
+	{
+		tmp = elem->next;
+		free(elem);
+		elem = tmp;
+	}
+	*stack = 0;
 }

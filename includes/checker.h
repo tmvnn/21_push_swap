@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 19:27:04 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/28 19:28:11 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 19:41:19 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void				print_stacks(char *line, t_push_swap *ps);
 void				print_head(char *line, t_push_swap *ps, int *max);
 t_stack				*find_stack_end(t_stack *stack);
 void				init_stacks_params(t_push_swap *ps);
+void				clear_stack(t_stack **stack);
+void				clear_stacks(t_push_swap *ps);
 
 /*
 ** --------------------------- Operations Functions ----------------------------

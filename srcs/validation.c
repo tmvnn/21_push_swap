@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:37:17 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/28 17:37:57 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/29 19:55:36 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ void			*pr_error(void)
 {
 	write(1, "Error\n", 6);
 	exit(1);
+}
+
+void			clear_stacks(t_push_swap *ps)
+{
+	clear_stack(&ps->stack_a);
+	clear_stack(&ps->stack_b);
 }
 
 char			is_num(char *str)
