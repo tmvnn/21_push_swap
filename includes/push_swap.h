@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:01:15 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/29 20:01:17 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/30 21:30:26 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void				find_optimal_ab_move(t_push_swap *ps);
 int					find_pos_in_a(t_push_swap *ps, int cur_n, int *oper);
 int					handle_first_and_last(t_push_swap *ps, int cur_n,
 																int *oper);
+int					set_oper(t_push_swap *ps, int *oper, int i);
 void				do_optimal_ab_move(t_push_swap *ps);
 void				switch_to_rr_rrr(t_push_swap *ps);
 void				reassign_ps(t_push_swap *ps, t_params par, t_stack *tmp);

@@ -6,7 +6,7 @@
 #    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/30 19:58:08 by lbellona         ###   ########.fr        #
+#    Updated: 2019/09/30 21:44:23 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,9 @@ SOURCES_PS = push_swap.c\
 		ps_opers2.c\
 		print_funcs.c
 
-CH 			= checker
+WWW = -Wall -Wextra -Werror
 
+CH 			= checker
 PS 			= push_swap
 
 SRCSDIR     = srcs
@@ -52,15 +53,16 @@ NAME_PS		= push_swap
 NAME_C		= checker
 INCLUDES	= -I includes/ -I libft/includes
 
-all: $(CH) $(PS)
+all: liba $(CH) $(PS)
+
+liba:
+	make -C ./libft/
 
 $(CH): $(OBJS_CH_DIR)
-	make -C ./libft/
-	cc $(OBJS_CH_DIR) -o $@  -L libft -lft
+	cc $(WWW) $(OBJS_CH_DIR) -o $@  -L libft -lft
 
 $(PS): $(OBJS_PS_DIR)
-	make -C ./libft/
-	cc $(OBJS_PS_DIR) -o $@  -L libft -lft
+	cc $(WWW) $(OBJS_PS_DIR) -o $@  -L libft -lft
 
 $(SRCSDIR)/%.o:$(SRCSDIR)/%.c
 	cc $(WWW) $(INCLUDES) -o $@ -c $<

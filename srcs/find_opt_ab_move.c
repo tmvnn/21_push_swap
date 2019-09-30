@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:17:17 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/29 21:04:35 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/30 21:29:00 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				handle_first_and_last(t_push_swap *ps, int cur_n, int *oper)
 	return (0);
 }
 
-int				set_oper(t_push_swap *ps, int cur_n, int *oper, int i)
+int				set_oper(t_push_swap *ps, int *oper, int i)
 {
 	if (i <= ps->size_a / 2)
 	{
@@ -51,11 +51,11 @@ int				find_pos_in_a(t_push_swap *ps, int cur_n, int *oper)
 	while (tmp)
 	{
 		if (cur_n < tmp->num && cur_n > tmp->prev->num)
-			return (set_oper(ps, cur_n, oper, i));
+			return (set_oper(ps, oper, i));
 		if (tmp->num == ps->min_a && cur_n < ps->min_a)
-			return (set_oper(ps, cur_n, oper, i));
+			return (set_oper(ps, oper, i));
 		if (tmp->num == ps->min_a && cur_n > ps->max_a)
-			return (set_oper(ps, cur_n, oper, i));
+			return (set_oper(ps, oper, i));
 		tmp = tmp->next;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 18:17:45 by timuryakubo       #+#    #+#             */
-/*   Updated: 2019/09/29 21:05:59 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/09/30 21:41:54 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char			fill_stack(t_push_swap *ps, char **argv)
 	}
 	while (*(++argv))
 	{
+		if (!ft_strcmp(*argv, ""))
+			return (0);
 		if (ft_strchr(*argv, ' ') || ft_strchr(*argv, '\t'))
 			parse_multi_args(*argv, &ps->stack_a, ps);
 		else if (is_num(*argv))
