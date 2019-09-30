@@ -6,7 +6,7 @@
 #    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/29 20:51:13 by lbellona         ###   ########.fr        #
+#    Updated: 2019/09/30 19:51:20 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,24 +75,26 @@ SOURCES = ft_atoi.c\
 	ft_word_count.c\
 	get_next_line.c
 
-SOURCES_DIR = $(addprefix srcs/, $(SOURCES))
+SRCSDIR = srcs
 
 NAME = libft.a
 WWW = -Wall -Wextra -Werror
+
 INCLUDES = includes/
 OFILES = $(SOURCES:.c=.o)
+OBJ_DIR = $(addprefix $(SRCSDIR)/, $(OFILES))
 
 all: $(NAME)
 
-$(NAME): $(OFILES)
-	ar rc $(NAME) $(OFILES)
+$(NAME): $(OBJ_DIR)
+	ar rc $(NAME) $(OBJ_DIR)
 	ranlib $(NAME)
 
-%.o:srcs/%.c
+$(SRCSDIR)/%.o:$(SRCSDIR)/%.c
 	 gcc $(WWW) -I $(INCLUDES) -o $@ -c $<
 
 clean:
-	/bin/rm -f $(OFILES)
+	/bin/rm -f $(OBJ_DIR)
 
 fclean: clean
 	/bin/rm -f $(NAME)
