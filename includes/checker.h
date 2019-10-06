@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 19:27:04 by lbellona          #+#    #+#             */
-/*   Updated: 2019/09/29 20:12:22 by lbellona         ###   ########.fr       */
+/*   Updated: 2019/10/06 19:06:44 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
+# include "ft_printf.h"
 # include <stdlib.h>
 # include <limits.h>
 # include "libft.h"

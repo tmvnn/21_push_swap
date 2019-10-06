@@ -6,7 +6,7 @@
 #    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2019/09/30 21:44:23 by lbellona         ###   ########.fr        #
+#    Updated: 2019/10/06 19:10:13 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,29 +51,34 @@ OBJS_PS_DIR = $(addprefix $(SRCSDIR)/, $(OBJS_PS))
 
 NAME_PS		= push_swap
 NAME_C		= checker
-INCLUDES	= -I includes/ -I libft/includes
+INCLUDES	= -I includes/ -I libft/includes -I ft_printf/includes
 
-all: liba $(CH) $(PS)
+all: liba printf $(CH) $(PS)
 
 liba:
 	make -C ./libft/
 
+printf:
+	make -C ./ft_printf/
+
 $(CH): $(OBJS_CH_DIR)
-	cc $(WWW) $(OBJS_CH_DIR) -o $@  -L libft -lft
+	cc $(WWW) $(OBJS_CH_DIR) -o $@  -L libft -lft -L ft_printf -lftprintf
 
 $(PS): $(OBJS_PS_DIR)
-	cc $(WWW) $(OBJS_PS_DIR) -o $@  -L libft -lft
+	cc $(WWW) $(OBJS_PS_DIR) -o $@  -L libft -lft -L ft_printf -lftprintf
 
 $(SRCSDIR)/%.o:$(SRCSDIR)/%.c
 	cc $(WWW) $(INCLUDES) -o $@ -c $<
 
 clean:
 	make -C ./libft/ clean
+	make -C ./ft_printf/ clean
 	/bin/rm -f $(OBJS_PS_DIR)
 	/bin/rm -f $(OBJS_CH_DIR)
 
 fclean: clean
 	make -C ./libft/ fclean
+	make -C ./ft_printf/ fclean
 	/bin/rm -f $(NAME_C)
 	/bin/rm -f $(NAME_PS)
 
